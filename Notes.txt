@@ -1,0 +1,8 @@
+Domain: 50iwan.com
+Admin : 50iwan.com/admin
+
+Smarterasp.NET:
+iwanfifty
+
+Frame on site: 519 x 634
+Images should be : 3274 x 4000

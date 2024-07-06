@@ -1,0 +1,6 @@
+﻿@{
+    string style = "cursor: pointer; border: 1px solid black; background-color: ";
+    if (_busy) style += "lightgray";
+    else style += ColorDto?.ColorCode;
+}
+<MudAvatar Style="@style" Class="mx-5" @ondblclick="DeleteColorAsync" />

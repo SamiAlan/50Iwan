@@ -1,0 +1,8 @@
+﻿@page "/admin/pages/product-details"
+@attribute [Authorize(Roles = $"{Roles.Admin}, {Roles.SuperAdmin}")]
+@using Iwan.Client.Blazor.Components.Pages
+
+<!-- Colors picker editor section -->
+<ColorPickingSectionEditor Colors="_details.ColorPickingSection.Colors"/>
+
+<!-- Other sections later if needed -->

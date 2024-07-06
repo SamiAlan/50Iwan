@@ -1,0 +1,69 @@
+﻿<MudText Typo="Typo.h4" Class="my-5">@Localize(LocalizeKeys.States)</MudText>
+
+@if (RelatedToProduct)
+{
+    <EditForm Model="_newState" OnValidSubmit="AddStateToExistingProductAsync" class="my-5">
+        <FluentValidationValidator Validator="_validator" DisableAssemblyScanning="true" />
+        <ServerValidation @ref="_serverValidator" />
+        <MudGrid>
+            <MudItem xs="5">
+                <MudText Align="Align.Left" Color="Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.ArabicName)</MudText>
+                <MudTextField Class="mx-3" Placeholder="@Localize(LocalizeKeys.ArabicName)" @bind-Text="_newState.ArabicName" For="() => _newState.ArabicName" Variant="Variant.Outlined" Disabled="_busy"></MudTextField>
+            </MudItem>
+            <MudItem xs="5">
+                <MudText Align="Align.Left" Color="Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.EnglishName)</MudText>
+                <MudTextField Class="mx-3" Placeholder="@Localize(LocalizeKeys.EnglishName)" @bind-Text="_newState.EnglishName" For="() => _newState.EnglishName" Variant="Variant.Outlined" Disabled="_busy"></MudTextField>
+            </MudItem>
+            <MudItem xs="2">
+                <MudIconButton Disabled="_busy" Color="Color.Primary" ButtonType="ButtonType.Submit" Icon="@Icons.Material.Filled.Add" />
+            </MudItem>
+        </MudGrid>
+    </EditForm>
+}
+else
+{
+    <EditForm Model="_newState" OnValidSubmit="@AddTempState" class="my-5">
+        <FluentValidationValidator Validator="_validator" DisableAssemblyScanning="true" />
+        <ServerValidation @ref="_serverValidator" />
+        <MudGrid>
+            <MudItem xs="5">
+                
+                <MudText Align="Align.Left" Color="Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.ArabicName)</MudText>
+                <MudTextField Class="mx-3" Placeholder="@Localize(LocalizeKeys.ArabicName)" @bind-Text="_newState.ArabicName" For="() => _newState.ArabicName" Variant="Variant.Outlined" Disabled="_busy"></MudTextField>
+
+            </MudItem>
+            <MudItem xs="5">
+
+                <MudText Align="Align.Left" Color="Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.EnglishName)</MudText>
+                <MudTextField Class="mx-3" Placeholder="@Localize(LocalizeKeys.EnglishName)" @bind-Text="_newState.EnglishName" For="() => _newState.EnglishName" Variant="Variant.Outlined" Disabled="_busy"></MudTextField>
+
+            </MudItem>
+            <MudItem xs="2">
+                <MudIconButton Disabled="_busy" Color="Color.Primary" ButtonType="ButtonType.Submit" Icon="@Icons.Material.Filled.Add" />
+            </MudItem>
+        </MudGrid>
+    </EditForm>
+}
+
+<MudList Disabled="_busy">
+    <MudGrid Class="mx-5">
+        @if (RelatedToProduct)
+        {
+            foreach (var state in _existingStates)
+            {
+                <MudItem xs="4">@state.ArabicName </MudItem>
+                <MudItem xs="4">@state.EnglishName</MudItem>
+                <MudItem xs="4"><MudIconButton Color="Color.Error" Icon="@Icons.Material.Filled.Delete" OnClick="@(() => DeleteExistingStateAsync(state))" /></MudItem>
+            }
+        }
+        else
+        {
+            foreach (var state in _newStates)
+            {
+                <MudItem xs="4">@state.ArabicName </MudItem>
+                <MudItem xs="4">@state.EnglishName</MudItem>
+                <MudItem xs="4"><MudIconButton Color="Color.Error" Icon="@Icons.Material.Filled.Delete" OnClick="@(() => DeleteTempState(state))" /></MudItem>
+            }
+        }
+    </MudGrid>
+</MudList>

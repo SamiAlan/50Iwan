@@ -1,0 +1,50 @@
+﻿@page "/admin/products/{Id}/categories"
+@attribute [Authorize(Roles = $"{Roles.Admin}, { Roles.SuperAdmin }")]
+
+<MudButton Variant="Variant.Text" Color="Color.Secondary" IconColor="Color.Secondary"
+           StartIcon="@Icons.Outlined.ArrowLeft" OnClick="GoToProductsPage">
+    @Localize(LocalizeKeys.Back)
+</MudButton>
+<MudText Typo="Typo.h4" Align="Align.Center" Class="mt-5 mb-5">@Localize(LocalizeKeys.ProductCategories)</MudText>
+
+<MudGrid>
+    <MudItem xs="12" sm="12" md="6" lg="5">
+        <MudText Typo="Typo.h5" Align="Align.Center">@Localize(LocalizeKeys.UnChoosenCategories)</MudText>
+        <MudTextField T="string" @bind-Text="unchosenCategoriesSearchText" Immediate="true"
+                      AdornmentIcon="@Icons.Material.Filled.Search" Label="@Localize(LocalizeKeys.Search)"
+                      Placeholder="@Localize(LocalizeKeys.Search)"></MudTextField>
+        <MudPaper>
+            <MudList Clickable="true" Disabled="busy">
+                @foreach (var category in UnchosenCategories)
+                {
+                    <MudListItem Text="@(category.ArabicName + " - " + category.EnglishName)"
+                             @ondblclick="async () => await AddCategoryToProduct(category)" />
+                }
+            </MudList>
+        </MudPaper>
+    </MudItem>
+
+    <MudItem xs="12" sm="12" md="1" lg="2" Style="margin:auto">
+        <MudText Align="Align.Center" Typo="Typo.h3" Style="">
+            <MudIcon Icon="@Icons.Material.Filled.ArrowRight" Size="Size.Large" Color="Color.Secondary" />
+            <MudIcon Icon="@Icons.Material.Filled.ArrowRight" Size="Size.Large" Color="Color.Secondary" />
+            <MudIcon Icon="@Icons.Material.Filled.ArrowRight" Size="Size.Large" Color="Color.Secondary" />
+        </MudText>
+    </MudItem>
+
+    <MudItem xs="12" sm="12" md="6" lg="5">
+        <MudText Typo="Typo.h5" Align="Align.Center">@Localize(LocalizeKeys.ChoosenCategories)</MudText>
+        <MudTextField T="string" @bind-Text="chosenCategoriesSearchText" Immediate="true"
+                      AdornmentIcon="@Icons.Material.Filled.Search" Label="@Localize(LocalizeKeys.Search)"
+                      Placeholder="@Localize(LocalizeKeys.Search)"></MudTextField>
+        <MudPaper>
+            <MudList Clickable="true" Disabled="busy">
+                @foreach (var productCategory in ProductCategories)
+                {
+                    <MudListItem Text="@(productCategory.ArabicName + " - " + productCategory.EnglishName)"
+                             @ondblclick="async () => await RemoveCategoryFromProductAsync(productCategory)" />
+                }
+            </MudList>
+        </MudPaper>
+    </MudItem>
+</MudGrid>

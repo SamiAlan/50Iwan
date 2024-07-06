@@ -1,0 +1,268 @@
+﻿@model HomePageContentViewModel
+@inject IStringLocalizer<Localization> localizer
+
+@{
+    ViewData["Title"] = localizer.Localize(LocalizeKeys.Home);
+    ViewBag.IsCultureArabic = Model.IsCultureArabic;
+    ViewBag.IsHomePage = true;
+}
+
+<!-- Hero  start -->
+<section class="hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="hero-text">
+                    <h1>@Model.HeadSection.Title</h1>
+                    <p>@Model.HeadSection.Subtitle1</p>
+                    <div class="items-number">
+                        <h3 style="font-family: 'Cairo', sans-serif;">100+</h3>
+                        <div class="v-line"></div>
+                        <h4>@Model.HeadSection.Subtitle2</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <!-- Swiper main image -->
+                <div class="swiper mySwiper2" style="background-image: url(assets/images/background.png);">
+                    <div class="swiper-wrapper">
+                        @if (Model.SliderImages?.Any() ?? false)
+                        {
+                            @foreach (var sliderImage in Model.SliderImages)
+                            {
+                                <div class="swiper-slide">
+                                    <a href="#">
+                                        <picture>
+                                            <source srcset="@sliderImage.MediumImage.Url" media="(min-width: 500px)">
+                                            <source srcset="@sliderImage.MobileImage.Url" media="(max-width: 500px)">
+                                            <img src="@sliderImage.MediumImage.Url" alt="" loading="lazy" />
+                                        </picture>
+                                    </a>
+                                </div>
+                            }
+                        }
+                    </div>
+
+                </div>
+
+                <!-- Swiper thumb images  -->
+                <div thumbsSlider="" class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        @if (Model.SliderImages?.Any() ?? false)
+                        {
+                            foreach (var sliderImage in Model.SliderImages)
+                            {
+                                <div class="swiper-slide">
+                                    <a href="#">
+                                        <picture>
+                                            <source srcset="@sliderImage.MediumImage.Url" media="(min-width: 500px)">
+                                            <source srcset="@sliderImage.MobileImage.Url" media="(max-width: 500px)">
+                                            <img src="@sliderImage.MediumImage.Url" alt="" loading="lazy" />
+                                        </picture>
+                                    </a>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Hero end  -->
+<!-- categoreis start -->
+<section class="categories page-section" id="categories">
+    <div class="main-head">
+        <h1>@localizer.Localize(LocalizeKeys.Category)</h1>
+    </div>
+    <div class="container">
+        <div class="row">
+            @if (Model.Categories?.Any() ?? false)
+            {
+                foreach (var category in Model.Categories)
+                {
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                        <a href="/@(ViewBag.IsCultureArabic ? "ar-SA" : "en-US")/product/index?categoryId=@category.Id">
+                            <div class="category-card" style="@(category.Image.HasBackgroundColor ? "background-color: " + category.Image.ColorCode : "")">
+                                <h3>@category.Name</h3>
+                                <picture>
+                                    <source srcset="@category.Image.MediumImage.Url" media="(min-width: 770px)">
+                                    <source srcset="@category.Image.MobileImage.Url" media="(max-width: 770px)">
+                                    <img src="@category.Image.MediumImage.Url" alt="" loading="lazy" />
+                                </picture>
+                            </div>
+                        </a>
+                    </div>
+                }
+            }
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="banner @(Model.IsCultureArabic ? "reverse" : "")">
+            @if (Model.IsCultureArabic)
+            {
+                <div class="image-section">
+                    <picture>
+                        <source srcset="@Model.InteriorDesignSection.MediumImage.Url" media="(min-width:770px)">
+                        <source srcset="@Model.InteriorDesignSection.MobileImage.Url" media="(max-width:770px)">
+                        <img src="@Model.InteriorDesignSection.MediumImage.Url" alt="" loading="lazy">
+                    </picture>
+                </div>
+
+                <!-- xs: 1.5rem, sm: 0.8rem, md: 1.2rem, lg: 1.5, xl: 1.6 -->
+                <div class="text-section">
+                    <h2>@Model.InteriorDesignSection.Text</h2>
+                </div>
+            }
+            else
+            {
+                <div class="text-section">
+                    <h2>@Model.InteriorDesignSection.Text</h2>
+                </div>
+                <div class="image-section">
+                    <picture>
+                        <source srcset="@Model.InteriorDesignSection.MediumImage.Url" media="(min-width:770px)">
+                        <source srcset="@Model.InteriorDesignSection.MobileImage.Url" media="(max-width:770px)">
+                        <img src="@Model.InteriorDesignSection.MediumImage.Url" alt="" loading="lazy">
+                    </picture>
+                </div>
+            }
+
+        </div>
+
+    </div>
+</section>
+<!-- categoreis end -->
+<!-- service start -->
+<div class="services page-section" id="services">
+    <div class="main-head">
+        <h1>@localizer.Localize(LocalizeKeys.Services)</h1>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <div class="wrapper">
+                    <h3>@Model.ServicesSection.Service1Title</h3>
+                    <img src="assets/images/icons/photo session.svg" alt="" loading="lazy">
+                    <p class="mx-auto d-block">@Model.ServicesSection.Service1Text</p>
+                </div>
+                <div class="d-md-none">
+                    <div class="divider-v"></div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-0">
+                <div class="divider"></div>
+            </div>
+
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <div class="wrapper">
+                    <h3>@Model.ServicesSection.Service2Title</h3>
+                    <img src="assets/images/icons/view.svg" alt="" loading="lazy">
+                    <p class="mx-auto d-block">@Model.ServicesSection.Service2Text</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- service end -->
+<!-- about us start -->
+<section class="about page-section" id="about">
+    <div class="main-head">
+        <h1>@localizer.Localize(LocalizeKeys.AboutUs)</h1>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 order-sm-2 order-xs-2 order-md-2 order-lg-1">
+                <div class="d-flex justify-content-center align-items-center h-100">
+
+                    <div class="text d-lg-none" style="font-family: 'Octine Vintage' ">
+                        <p>@Model.AboutUsSection.Text</p>
+                    </div>
+                    <div class="text d-none d-lg-block">
+                        <p>@Model.AboutUsSection.Text</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 order-sm-1 order-xs-1 order-md-1 order-lg-2">
+                <div class="slider">
+                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            @if (Model.AboutUsSection.Images?.Any() ?? false)
+                            {
+                                var activeSet = false;
+                                foreach (var image in Model.AboutUsSection.Images)
+                                {
+                                    <div class="carousel-item @(!activeSet ? "active" : "")">
+                                        <img class="d-block w-100" width="500" height="500" src="@image.MediumImage.Url" alt="..." loading="lazy" >
+                                    </div>
+
+                                    activeSet = true;
+                                }
+                            }
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- about us end -->
+<!-- contact us start -->
+<section class="contact page-section" id="contact">
+    <div class="main-head">
+        <h1>@localizer.Localize(LocalizeKeys.ContactUs)</h1>
+    </div>
+
+    <div class="contact-info">
+        <div class="info-container">
+            <img src="assets/images/icons/location.png" alt="">
+            <p>@Model.ContactUsSection.Location</p>
+        </div>
+        <div class="info-container">
+            <img src="assets/images/icons/email.png" alt="">
+            <p><a href="mailto:@("@" + Model.ContactUsSection.Email)">@Model.ContactUsSection.Email</a></p>
+        </div>
+        <div class="info-container">
+            <img src="assets/images/icons/whatsapp.png" alt="">
+            <p><a href="tel:@(Model.ContactUsSection.PhoneNumber)">@Model.ContactUsSection.PhoneNumber</a></p>
+        </div>
+        <div class="info-container social">
+            <a href="@Model.ContactUsSection.InstagramUrl"><img src="assets/images/icons/instagram.png" alt=""></a>
+        </div>
+
+    </div>
+</section>
+<!-- contact us end -->
+@section Scripts{
+<script>
+    function scrollToSection(section){
+        const offsetTop = document.querySelector("#" + section).offsetTop;
+
+        scroll({
+            top: offsetTop,
+            behavior: "smooth"
+        });
+    }
+
+    $(document).ready(function() {
+        @if (!ViewData["SectionToNavigateTo"].ToString().IsNullOrEmptyOrWhiteSpaceSafe()){
+            <text>scrollToSection("@ViewData["SectionToNavigateTo"].ToString()");</text>
+        }
+    });
+
+</script>
+}

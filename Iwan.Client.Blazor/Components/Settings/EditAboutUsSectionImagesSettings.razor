@@ -1,0 +1,51 @@
+﻿<MudPaper Class="pa-16 ma-2" Elevation="3">
+    <MudText Typo="Typo.h5" Class="mb-5">@Localize(LocalizeKeys.AboutUsSection)</MudText>
+    <EditForm Model="_settings" OnValidSubmit="UpdateSettingsAsync">
+        <FluentValidationValidator Validator="_validator"></FluentValidationValidator>
+        <ServerValidation @ref="_serverValidator"></ServerValidation>
+
+        <MudGrid>
+            <MudItem sm="6" md="6" lg="6">
+                <MudText Align="Align.Left" Color="Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.MediumImageWidth)</MudText>
+                <MudNumericField @bind-Value="_settings.MediumImageWidth" For="() => _settings.MediumImageWidth" Variant="Variant.Outlined"></MudNumericField>
+            </MudItem>
+            <MudItem sm="6" md="6" lg="6">
+                <MudText Align="Align.Left" Color="Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.MediumImageHeight)</MudText>
+                <MudNumericField @bind-Value="_settings.MediumImageHeight" For="() => _settings.MediumImageHeight" Variant="Variant.Outlined"></MudNumericField>
+            </MudItem>
+            <MudItem sm="6" md="6" lg="6">
+                <MudText Align="Align.Left" Color="Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.MobileImageWidth)</MudText>
+                <MudNumericField @bind-Value="_settings.MobileImageWidth" For="() => _settings.MobileImageWidth" Variant="Variant.Outlined"></MudNumericField>
+            </MudItem>
+            <MudItem sm="6" md="6" lg="6">
+                <MudText Align="Align.Left" Color="Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.MobileImageHeight)</MudText>
+                <MudNumericField @bind-Value="_settings.MobileImageHeight" For="() => _settings.MobileImageHeight" Variant="Variant.Outlined"></MudNumericField>
+            </MudItem>
+        </MudGrid>
+
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" Disabled="@_busy"
+                   ButtonType="ButtonType.Submit" Class="mt-3 ml-auto">
+            @if (_busy)
+            {
+                <MudProgressCircular Indeterminate="true" Color="Color.Primary" Size="Size.Medium" />
+            }
+            else
+            {
+                @Localize(LocalizeKeys.Edit)
+            }
+        </MudButton>
+
+        @*<MudButton Variant="Variant.Filled" Color="Color.Success" Disabled="@_busy"
+                   Class="mx-4 mt-3 ml-auto" OnClick="StartResizingJobAsync">
+            @if (_busy)
+            {
+                <MudProgressCircular Indeterminate="true" Color="Color.Primary" Size="Size.Medium" />
+            }
+            else
+            {
+                @Localize(LocalizeKeys.ResizeImages)
+            }
+        </MudButton>*@
+    </EditForm>
+</MudPaper>
+

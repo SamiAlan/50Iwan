@@ -1,0 +1,42 @@
+﻿<MudPaper Class="pa-16 ma-2" Elevation="3">
+    <MudText Typo="Typo.h5" Class="mb-5">@Localize(LocalizeKeys.HeaderSection)</MudText>
+    <EditForm Model="_headerSection" OnValidSubmit="UpdateSectionAsync">
+        <ServerValidation @ref="_serverValidator"></ServerValidation>
+
+        <MudGrid>
+            <MudItem xs="12" sm="12" md="6" lg="6">
+                <MudText Align="Align.Left" Color="MudBlazor.Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.ArabicTitle)</MudText>
+                <MudTextField @bind-Value="_headerSection.ArabicTitle" For="() => _headerSection.ArabicTitle" Variant="Variant.Outlined" Class="mb-5"></MudTextField>
+
+                <MudText Align="Align.Left" Color="MudBlazor.Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.ArabicSubtitle1)</MudText>
+                <MudTextField @bind-Value="_headerSection.ArabicSubtitle1" For="() => _headerSection.ArabicSubtitle1" Variant="Variant.Outlined" Class="mb-5"></MudTextField>
+
+                <MudText Align="Align.Left" Color="MudBlazor.Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.ArabicSubtitle2)</MudText>
+                <MudTextField @bind-Value="_headerSection.ArabicSubtitle2" For="() => _headerSection.ArabicSubtitle2" Variant="Variant.Outlined" Class="mb-5"></MudTextField>
+            </MudItem>
+            <MudItem xs="12" sm="12" md="6" lg="6">
+                <MudText Align="Align.Left" Color="MudBlazor.Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.EnglishTitle)</MudText>
+                <MudTextField @bind-Value="_headerSection.EnglishTitle" For="() => _headerSection.EnglishTitle" Variant="Variant.Outlined" Class="mb-5"></MudTextField>
+
+                <MudText Align="Align.Left" Color="MudBlazor.Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.EnglishSubtitle1)</MudText>
+                <MudTextField @bind-Value="_headerSection.EnglishSubtitle1" For="() => _headerSection.EnglishSubtitle1" Variant="Variant.Outlined" Class="mb-5"></MudTextField>
+
+                <MudText Align="Align.Left" Color="MudBlazor.Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.EnglishSubtitle2)</MudText>
+                <MudTextField @bind-Value="_headerSection.EnglishSubtitle2" For="() => _headerSection.EnglishSubtitle2" Variant="Variant.Outlined" Class="mb-5"></MudTextField>
+            </MudItem>
+        </MudGrid>
+
+        <MudButton Variant="Variant.Filled" Color="MudBlazor.Color.Primary" Disabled="@busy"
+                   ButtonType="ButtonType.Submit" Class="mt-3 ml-auto">
+            @if (busy)
+            {
+                <MudProgressCircular Indeterminate="true" Color="MudBlazor.Color.Primary" Size="Size.Medium" />
+            }
+            else
+            {
+                @Localize(LocalizeKeys.Edit)
+            }
+        </MudButton>
+    </EditForm>
+</MudPaper>
+

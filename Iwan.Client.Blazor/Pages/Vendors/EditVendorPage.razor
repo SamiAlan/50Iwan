@@ -1,0 +1,96 @@
+﻿@page "/admin/vendors/{Id}/edit"
+@using Iwan.Shared.Validators.Vendors.Admin
+@using Iwan.Shared.Validators.Common
+@attribute [Authorize(Roles = $"{Roles.Admin}, { Roles.SuperAdmin }")]
+
+<MudButton Variant="Variant.Text" Color="Color.Secondary" IconColor="Color.Secondary" StartIcon="@Icons.Outlined.ArrowLeft" OnClick="GoToVendorsPage">
+    @Localize(LocalizeKeys.Back)
+</MudButton>
+<MudCard Outlined="true" Elevation="2" Class="mb-5 p-5">
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText Typo="Typo.h4">@Localize(LocalizeKeys.VendorDetails)</MudText>
+        </CardHeaderContent>
+    </MudCardHeader>
+
+    <!-- Vendor details -->
+    <EditForm Model="vendor" OnValidSubmit="EditVendorAsync">
+        <MudCardContent>
+            <FluentValidationValidator Validator="_vendorValidator" />
+            <ServerValidation @ref="_vendorServerValidator" />
+
+            <MudTextField @bind-Value="vendor.Name" Label="@Localize(LocalizeKeys.Name)" For="() => vendor.Name"
+                           Class="mb-5" Variant="Variant.Outlined" />
+
+            <MudNumericField Max="100" Min="0" @bind-Value="vendor.BenefitPercent" Label="@Localize(LocalizeKeys.BenefitPercent)"
+                             For="() => vendor.BenefitPercent" Class="mb-5" Variant="Variant.Outlined" />
+
+            <MudSwitch @bind-Checked="vendor.ShowOwnProducts" Label="@Localize(LocalizeKeys.ShowVendorProducts)"
+                       For="() => vendor.ShowOwnProducts" Class="mb-5" Color="Color.Success"/>
+        </MudCardContent>
+        <MudCardActions>
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" Disabled="@busy" ButtonType="ButtonType.Submit"
+                       Class="ml-auto">
+                @if (busy)
+                {
+                    <MudProgressCircular Indeterminate="true" Color="Color.Primary" Size="Size.Medium"></MudProgressCircular>
+                }
+                else
+                {
+                    @Localize(LocalizeKeys.Edit)
+                }
+            </MudButton>
+        </MudCardActions>
+    </EditForm>
+</MudCard>
+
+
+<!-- Vendor address -->
+<MudCard Class="p-5 mb-5">
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText Typo="Typo.h4">@Localize(LocalizeKeys.VendorAddress)</MudText>
+        </CardHeaderContent>
+    </MudCardHeader>
+    <EditForm Model="address" OnValidSubmit="EditAddressAsync">
+        <FluentValidationValidator Validator="_addressValidator" />
+        <ServerValidation @ref="_addressServerValidator" />
+
+        <MudCardContent>
+            <MudTextField @bind-Value="address.City" Label="@Localize(LocalizeKeys.City)"
+                          For="() => address.City" Class="mb-5" Variant="Variant.Outlined"/>
+
+            <MudTextField @bind-Value="address.Country" Label="@Localize(LocalizeKeys.Country)"
+                          For="() => address.Country"  Class="mb-5" Variant="Variant.Outlined"/>
+
+            <MudTextField @bind-Value="address.Company" Label="@Localize(LocalizeKeys.Company)"
+                          For="() => address.Company"  Class="mb-5" Variant="Variant.Outlined"/>
+
+            <MudTextField @bind-Value="address.Email" Label="@Localize(LocalizeKeys.Email)"
+                          For="() => address.Email"  Class="mb-5" Variant="Variant.Outlined"/>
+
+            <MudTextField @bind-Value="address.PhoneNumber" Label="@Localize(LocalizeKeys.PhoneNumber)" InputType="InputType.Telephone"
+                          For="() => address.PhoneNumber"  Class="mb-5" Variant="Variant.Outlined"/>
+
+            <MudTextField @bind-Value="address.Address1" Label="@Localize(LocalizeKeys.Address1)"
+                          For="() => address.Address1"  Class="mb-5" Variant="Variant.Outlined"/>
+
+            <MudTextField @bind-Value="address.Address2" Label="@Localize(LocalizeKeys.Address2)"
+                          For="() => address.Address2"  Class="mb-5" Variant="Variant.Outlined"/>
+
+        </MudCardContent>
+        <MudCardActions>
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" Disabled="@busy" ButtonType="ButtonType.Submit"
+                       Class="ml-auto">
+                @if (busy)
+                {
+                    <MudProgressCircular Indeterminate="true" Color="Color.Primary" Size="Size.Medium"></MudProgressCircular>
+                }
+                else
+                {
+                    @Localize(LocalizeKeys.Edit)
+                }
+            </MudButton>
+        </MudCardActions>
+    </EditForm>
+</MudCard>

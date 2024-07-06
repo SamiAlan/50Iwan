@@ -1,0 +1,48 @@
+﻿<MudPaper Class="pa-16 ma-2" Elevation="3">
+    <MudText Typo="Typo.h5" Class="mb-5">@Localize(LocalizeKeys.ServicesSection)</MudText>
+    <EditForm Model="_servicesSection" OnValidSubmit="UpdateSectionAsync">
+        <ServerValidation @ref="_serverValidator"></ServerValidation>
+
+        <MudGrid>
+            <MudItem xs="12" sm="12" md="6" lg="6">
+                <MudText Align="Align.Left" Color="MudBlazor.Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.Service1ArabicTitle)</MudText>
+                <MudTextField @bind-Value="_servicesSection.Service1ArabicTitle" Class="mb-5" For="() => _servicesSection.Service1ArabicTitle" Variant="Variant.Outlined"></MudTextField>
+
+                <MudText Align="Align.Left" Color="MudBlazor.Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.Service1ArabicText)</MudText>
+                <MudTextField @bind-Value="_servicesSection.Service1ArabicText" Class="mb-5" For="() => _servicesSection.Service1ArabicText" Variant="Variant.Outlined" Lines="5"></MudTextField>
+
+                <MudText Align="Align.Left" Color="MudBlazor.Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.Service2ArabicTitle)</MudText>
+                <MudTextField @bind-Value="_servicesSection.Service2ArabicTitle" Class="mb-5" For="() => _servicesSection.Service2ArabicTitle" Variant="Variant.Outlined"></MudTextField>
+
+                <MudText Align="Align.Left" Color="MudBlazor.Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.Service2ArabicText)</MudText>
+                <MudTextField @bind-Value="_servicesSection.Service2ArabicText" Class="mb-5" For="() => _servicesSection.Service2ArabicText" Variant="Variant.Outlined" Lines="5"></MudTextField>
+            </MudItem>
+            <MudItem xs="12" sm="12" md="6" lg="6">
+                <MudText Align="Align.Left" Color="MudBlazor.Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.Service1EnglishTitle)</MudText>
+                <MudTextField @bind-Value="_servicesSection.Service1EnglishTitle" Class="mb-5" For="() => _servicesSection.Service1EnglishTitle" Variant="Variant.Outlined"></MudTextField>
+
+                <MudText Align="Align.Left" Color="MudBlazor.Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.Service1EnglishText)</MudText>
+                <MudTextField @bind-Value="_servicesSection.Service1EnglishText" Class="mb-5" For="() => _servicesSection.Service1EnglishText" Variant="Variant.Outlined" Lines="5"></MudTextField>
+
+                <MudText Align="Align.Left" Color="MudBlazor.Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.Service2EnglishTitle)</MudText>
+                <MudTextField @bind-Value="_servicesSection.Service2EnglishTitle" Class="mb-5" For="() => _servicesSection.Service2EnglishTitle" Variant="Variant.Outlined"></MudTextField>
+
+                <MudText Align="Align.Left" Color="MudBlazor.Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.Service2EnglishText)</MudText>
+                <MudTextField @bind-Value="_servicesSection.Service2EnglishText" Class="mb-5" For="() => _servicesSection.Service2EnglishText" Variant="Variant.Outlined" Lines="5"></MudTextField>
+            </MudItem>
+        </MudGrid>
+
+        <MudButton Variant="Variant.Filled" Color="MudBlazor.Color.Primary" Disabled="@busy"
+                   ButtonType="ButtonType.Submit" Class="mt-3 ml-auto">
+            @if (busy)
+            {
+                <MudProgressCircular Indeterminate="true" Color="MudBlazor.Color.Primary" Size="Size.Medium" />
+            }
+            else
+            {
+                @Localize(LocalizeKeys.Edit)
+            }
+        </MudButton>
+    </EditForm>
+</MudPaper>
+

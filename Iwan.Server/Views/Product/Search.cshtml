@@ -1,0 +1,85 @@
+﻿@model SearchPageContentViewModel
+@inject IStringLocalizer<Localization> localizer
+
+@{
+    ViewData["Title"] = localizer.Localize(LocalizeKeys.Search);
+    ViewData["body_style"] = "background-color:#f6f6f6";
+    ViewBag.IsCultureArabic = Model.IsCultureArabic;
+    ViewBag.IsHomePage = false;
+}
+
+<!-- Query head start -->
+<div class="container">
+    <div class="sub-head">
+        <div class="head">
+            <h1>@Model.Text (@(Model.Products.TotalItems))</h1>
+        </div>
+    </div>
+</div>
+
+<!-- Query head end -->
+<!-- products start -->
+<section class="products">
+    <div class="container">
+        <div class="row">
+            @foreach (var product in Model.Products.Data)
+            {
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                    <a href="/@(ViewBag.IsCultureArabic ? "ar-SA" : "en-US")/product/details?id=@product.Id">
+                        <div class="product-card" style="@(product.Image.HasBackgroundColor ? "background-color: " + product.Image.ColorCode : "")">
+                            <h3>@product.Name</h3>
+                            <picture>
+                                <source srcset="@product.Image.MediumImage.Url" media="(min-width: 770px)" />
+                                <source srcset="@product.Image.MobileImage.Url" media="(max-width: 770px)" />
+                                <img src="@product.Image.MediumImage.Url" class="mx-auto d-block" alt="">
+                            </picture>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+<!-- products end -->
+<!-- Pagination Start -->
+<div class="pagination">
+    @{
+        var totalPages = Model.Products.TotalPages;
+    }
+
+    @if (totalPages > 1)
+    {
+        // Show back arrow
+        if (Model.Products.HasPrevious)
+        {
+            <div class="arrow"><a href="/@(ViewBag.IsCultureArabic ? "ar-SA" : "en-US")/product/search?currentPage=@(Model.Products.CurrentPage - 1)&text=@(Model.Text)"><img src="/assets/images/icons/caret-left-fill.svg" alt=""></a></div>
+        }
+
+        // Show first page with dots
+        if (Model.Products.AddFirstPageWithDots)
+        {
+            <span><a href="/@(ViewBag.IsCultureArabic ? "ar-SA" : "en-US")/product/search?currentPage=1&text=@(Model.Text)">1</a></span>
+            <text>. . .</text>
+        }
+
+        // Show pages
+        foreach (var pageNumber in Model.Products.Pages)
+        {
+            <span class="@(pageNumber == Model.Products.CurrentPage ? "active" : "")"><a href="/@(ViewBag.IsCultureArabic ? "ar-SA" : "en-US")/product/search?currentPage=@(pageNumber)&text=@(Model.Text)">@pageNumber</a></span>
+        }
+
+        // Show last page with dots
+        if (Model.Products.AddLastPageWithDots)
+        {
+            <text>. . .</text>
+            <span><a href="/@(ViewBag.IsCultureArabic ? "ar-SA" : "en-US")/product/search?currentPage=@totalPages&text=@(Model.Text)">@totalPages</a></span>
+        }
+
+        // Show next arrow
+        if (Model.Products.HasNext)
+        {
+            <div class="arrow"><a href="/@(ViewBag.IsCultureArabic ? "ar-SA" : "en-US")/product/search?currentPage=@(Model.Products.CurrentPage + 1)&text=@(Model.Text)"><img src="/assets/images/icons/caret-right-fill.svg" alt=""></a></div>
+        }
+    }
+</div>
+<!-- Pagination End -->

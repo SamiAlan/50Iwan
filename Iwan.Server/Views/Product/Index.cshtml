@@ -1,0 +1,136 @@
+﻿@model ProductsPageContentViewModel
+@inject IStringLocalizer<Localization> localizer
+
+@{
+    ViewData["Title"] = localizer.Localize(LocalizeKeys.Products);
+    ViewData["body_style"] = "background-color:#f6f6f6";
+    ViewBag.IsCultureArabic = Model.IsCultureArabic;
+    ViewBag.IsHomePage = false;
+}
+
+<!-- Head Start -->
+<div class="container">
+    <div class="sub-head">
+        <div class="links">
+            <span><a href="#">@localizer.Localize(LocalizeKeys.Category)</a></span>
+            <div class="divider"></div>
+            <span><a href="/@(ViewBag.IsCultureArabic ? "ar-SA" : "en-US")/product/index?categoryId=@Model.SelectedCategoryId" class="active">@Model.SelectedCategoryName</a></span>
+        </div>
+        <div class="head">
+            <h1>@Model.SelectedCategoryName</h1>
+        </div>
+    </div>
+</div>
+<!-- Head End-->
+<!-- SubCategories start -->
+<section class="products">
+    <div class="container">
+        <div class="row">
+            @if (Model.SubCategories?.Any() ?? false)
+            {
+                foreach (var subCategory in Model.SubCategories)
+                {
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                        <a href="/@(ViewBag.IsCultureArabic ? "ar-SA" : "en-US")/product/index?categoryId=@(Model.SelectedCategoryId)&subCategoryId=@subCategory.Id">
+                            <div class="product-card @(subCategory.Id == Model.SelectedSubCategoryId ? "sub-category-active" : "")" style="@(subCategory.Image.HasBackgroundColor ? "background-color: " + subCategory.Image.ColorCode : "")">
+                                <h3>@subCategory.Name</h3>
+                                <picture>
+                                    <source srcset="@subCategory.Image.MediumImage.Url" media="(min-width:770px)" />
+                                    <source srcset="@subCategory.Image.MobileImage.Url" media="(max-width:770px)" />
+                                    <img src="@subCategory.Image.MediumImage.Url" class="mx-auto d-block" alt="">
+                                </picture>
+                            </div>
+                        </a>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</section>
+<!-- Subcategories end -->
+<!-- Page Divider Start  -->
+<div class="container">
+    <div class="page-divider"></div>
+</div>
+<!-- Page Divider End  -->
+<!-- Items Counter Start -->
+<div class="container">
+    <div class="item-counter">
+        <span>@Model.Products.TotalItems @localizer.Localize(LocalizeKeys.Items)</span>
+        <div class="divider"></div>
+        <span>@Model.Products.CurrentPage @localizer.Localize(LocalizeKeys.Of) @Model.Products.TotalPages</span>
+    </div>
+</div>
+<!-- Items Counter End -->
+<!-- Products Start -->
+<section class="products">
+    <div class="container">
+        <div class="row">
+            @if (Model.Products?.Data.Any() ?? false)
+            {
+                foreach (var product in Model.Products.Data)
+                {
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                        <a href="/@(ViewBag.IsCultureArabic ? "ar-SA" : "en-US")/product/details?id=@(product.Id)&categoryId=@(Model.SelectedSubCategoryId.IsNullOrEmptyOrWhiteSpaceSafe() ? Model.SelectedCategoryId : Model.SelectedSubCategoryId)">
+                            <div class="product-card" style="@(product.Image.HasBackgroundColor ? "background-color: " + product.Image.ColorCode : "" )">
+                                <h3>@product.Name</h3>
+                                <picture>
+                                    <source srcset="@product.Image.MediumImage.Url" media="(min-width: 770px)" />
+                                    <source srcset="@product.Image.MobileImage.Url" media="(max-width: 770px)" />
+                                    <img src="@product.Image.MediumImage.Url" class="mx-auto d-block" alt="">
+                                </picture>
+                            </div>
+                        </a>
+                    </div>
+                }
+            }
+
+        </div>
+    </div>
+</section>
+
+<!-- Products End -->
+<!-- Pagination Start -->
+<div class="pagination">
+    @{
+        var totalPages = Model.Products.TotalPages;
+    }
+
+    @if (totalPages > 1)
+    {
+        var selectedSubCategoryId = Model.SelectedSubCategoryId;
+
+        // Show back arrow
+        if (Model.Products.HasPrevious)
+        {
+            <div class="arrow"><a href="/@(ViewBag.IsCultureArabic ? "ar-SA" : "en-US")/product/index?currentPage=@(Model.Products.CurrentPage - 1)&categoryId=@(Model.SelectedCategoryId)@(string.IsNullOrEmpty(selectedSubCategoryId) ? "" : "&subCategoryId=" + selectedSubCategoryId)"><img src="/assets/images/icons/caret-left-fill.svg" alt=""></a></div>
+        }
+
+        // Show first page dots
+        if (Model.Products.AddFirstPageWithDots)
+        {
+            <span><a href="/@(ViewBag.IsCultureArabic ? "ar-SA" : "en-US")/product/index?currentPage=1&categoryId=@(Model.SelectedCategoryId)@(string.IsNullOrEmpty(selectedSubCategoryId) ? "" : "&subCategoryId=" + selectedSubCategoryId)">1</a></span>
+            <text>. . .</text>
+        }
+
+        // Show pages
+        foreach (var pageNumber in Model.Products.Pages)
+        {
+            <span class="@(pageNumber == Model.Products.CurrentPage ? "active" : "")"><a href="/@(ViewBag.IsCultureArabic ? "ar-SA" : "en-US")/product/index?currentPage=@(pageNumber)&categoryId=@(Model.SelectedCategoryId)@(string.IsNullOrEmpty(selectedSubCategoryId) ? "" : "&subCategoryId=" + selectedSubCategoryId)">@pageNumber</a></span>
+        }
+
+        // Show last page dots
+        if (Model.Products.AddLastPageWithDots)
+        {
+            <text>. . .</text>
+            <span><a href="/@(ViewBag.IsCultureArabic ? "ar-SA" : "en-US")/product/index?currentPage=@(totalPages)&categoryId=@(Model.SelectedCategoryId)@(string.IsNullOrEmpty(selectedSubCategoryId) ? "" : "&subCategoryId=" + selectedSubCategoryId)">@totalPages</a></span>
+        }
+
+        // Show next arrow
+        if (Model.Products.HasNext)
+        {
+            <div class="arrow"><a href="/@(ViewBag.IsCultureArabic ? "ar-SA" : "en-US")/product/index?currentPage=@(Model.Products.CurrentPage + 1)&categoryId=@(Model.SelectedCategoryId)@(string.IsNullOrEmpty(selectedSubCategoryId) ? "" : "&subCategoryId=" + selectedSubCategoryId)"><img src="/assets/images/icons/caret-right-fill.svg" alt=""></a></div>
+        }
+    }
+</div>
+<!-- Pagination End -->

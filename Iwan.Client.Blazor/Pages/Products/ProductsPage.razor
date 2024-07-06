@@ -1,0 +1,233 @@
+﻿@page "/admin/products"
+@using Iwan.Shared.Dtos.Products
+@using Iwan.Client.Blazor.Components.Products
+@attribute [Authorize(Roles = $"{Roles.Admin}, { Roles.SuperAdmin }")]
+
+<MudText Typo="Typo.h5" Color="Color.Primary" Class="mb-4">@Localize(LocalizeKeys.Products)</MudText>
+<MudCard Style="padding: 2rem">
+    <MudCardHeader>
+        <CardHeaderActions>
+            <MudButton Color="Color.Primary" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Add" OnClick="() => NavigationManager.NavigateTo(AppPages.AddProduct)">
+                @Localize(LocalizeKeys.Add)
+            </MudButton>
+        </CardHeaderActions>
+        <CardHeaderContent>
+            <MudText Class="mb-5" Align="Align.Left" Color="Color.Dark" Typo="Typo.h5" GutterBottom="true">@Localize(LocalizeKeys.SearchOptions)</MudText>
+            <MudDivider Light="false" DividerType="DividerType.Inset" Class="mb-5"></MudDivider>
+            <MudGrid>
+                <MudItem xs="12" sm="6" md="3" lg="3">
+                    <MudText Align="Align.Left" Color="Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.Number)</MudText>
+                    <MudNumericField @bind-Value="options.Number" For="() => options.Number" Clearable="true" Placeholder="ex:503"></MudNumericField>
+                </MudItem>
+
+                <MudItem xs="12" sm="6" md="3" lg="3">
+                    <MudText Align="Align.Left" Color="Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.Name)</MudText>
+                    <MudTextField @bind-Value="options.Text" For="() => options.Text" Clearable="true" Placeholder="@Localize(LocalizeKeys.Name)"></MudTextField>
+                </MudItem>
+
+                <MudItem xs="3" sm="3" md="3" lg="3">
+                    <MudText Align="Align.Left" Color="Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.IsVisible)</MudText>
+                    <MudCheckBox @bind-Checked="options.OnlyVisible" For="() => options.OnlyVisible" Color="Color.Success" TriState="true"></MudCheckBox>
+                </MudItem>
+
+                <MudItem xs="3" sm="3" md="3" lg="3">
+                    <MudText Align="Align.Left" Color="Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.OnlyNeedingResize)</MudText>
+                    <MudCheckBox @bind-Checked="options.OnlyNeedingResize" For="() => options.OnlyNeedingResize" Color="Color.Success" TriState="true"></MudCheckBox>
+                </MudItem>
+
+                <MudItem xs="3" sm="3" md="3" lg="3">
+                    <MudText Align="Align.Left" Color="Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.HavingCategories)</MudText>
+                    <MudCheckBox @bind-Checked="options.OnlyUnattached" For="() => options.OnlyUnattached" Color="Color.Success" TriState="true"></MudCheckBox>
+                </MudItem>
+
+                <MudItem xs="3" sm="3" md="3" lg="3">
+                    <MudText Align="Align.Left" Color="Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.HavingNoMainImage)</MudText>
+                    <MudCheckBox @bind-Checked="options.HavingNoMainImage" For="() => options.HavingNoMainImage" Color="Color.Success" TriState="true"></MudCheckBox>
+                </MudItem>
+
+                <MudItem xs="3" sm="3" md="3" lg="3">
+                    <MudText Align="Align.Left" Color="Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.OnlyOwnedProducts)</MudText>
+                    <MudCheckBox @bind-Checked="options.OnlyOwnedProducts" For="() => options.OnlyOwnedProducts" Color="Color.Success" TriState="true"></MudCheckBox>
+                </MudItem>
+
+                <MudItem xs="12" sm="6" md="4" lg="4">
+                    <MudSelect Class="mb-5" T="string" @bind-Value="options.UnderCategoryId"
+                               Label="@Localize(LocalizeKeys.UnderCategory)"
+                               Placeholder="@Localize(LocalizeKeys.SelectParentCategory)" AnchorOrigin="Origin.BottomCenter">
+                        <MudSelectItem T="string">@Localize(LocalizeKeys.None)</MudSelectItem>
+                        @foreach (var parentCategory in _parentCategories)
+                        {
+                            <MudSelectItem T="string" Value="@parentCategory.Id">
+                                @parentCategory.EnglishName - @parentCategory.ArabicName
+                            </MudSelectItem>
+                        }
+                    </MudSelect>
+                </MudItem>
+
+                <MudItem xs="12" sm="6" md="4" lg="4">
+                    <MudSelect Class="mb-5" T="string" @bind-Value="options.UnderSubCategoryId"
+                               Label="@Localize(LocalizeKeys.UnderSubCategory)"
+                               Placeholder="@Localize(LocalizeKeys.SelectSubCategory)" AnchorOrigin="Origin.BottomCenter">
+                        <MudSelectItem T="string">@Localize(LocalizeKeys.None)</MudSelectItem>
+                        @foreach (var subCategory in _subCategories)
+                        {
+                            <MudSelectItem T="string" Value="@subCategory.Id">
+                                @subCategory.EnglishName - @subCategory.ArabicName
+                            </MudSelectItem>
+                        }
+                    </MudSelect>
+                </MudItem>
+
+                <MudItem xs="12" sm="6" md="4" lg="4">
+                    <MudSelect Class="mb-5" T="string" @bind-Value="options.UnderVendorId"
+                               Label="@Localize(LocalizeKeys.Vendors)"
+                               Placeholder="@Localize(LocalizeKeys.SelectVendor)" AnchorOrigin="Origin.BottomCenter">
+                        <MudSelectItem T="string">@Localize(LocalizeKeys.None)</MudSelectItem>
+                        @foreach (var vendor in _vendors)
+                        {
+                            <MudSelectItem T="string" Value="@vendor.Id">
+                                @vendor.Name
+                            </MudSelectItem>
+                        }
+                    </MudSelect>
+                </MudItem>
+                <MudItem xs="12">
+                    <MudButton Color="Color.Primary" FullWidth="true" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Search" OnClick="ReloadDataAsync">
+                        @Localize(LocalizeKeys.Search)
+                    </MudButton>
+                </MudItem>
+            </MudGrid>
+        </CardHeaderContent>
+    </MudCardHeader>
+
+
+    <MudTable Class="mt-3" ServerData="@(new Func<TableState, Task<TableData<ProductDto>>>(SearchData))"
+              Dense="true" Hover="true" @ref="table" CurrentPage="options.CurrentPage">
+        <HeaderContent>
+            <MudTh><MudText Align="Align.Center">#</MudText></MudTh>
+            <MudTh><MudText Align="Align.Center">@Localize(LocalizeKeys.Image)</MudText></MudTh>
+            <MudTh><MudText Align="Align.Center">@Localize(LocalizeKeys.ArabicName)</MudText></MudTh>
+            <MudTh><MudText Align="Align.Center">@Localize(LocalizeKeys.EnglishName)</MudText></MudTh>
+            <MudTh><MudText Align="Align.Center">@Localize(LocalizeKeys.Price)</MudText></MudTh>
+            <MudTh><MudText Align="Align.Center">@Localize(LocalizeKeys.Quantity)</MudText></MudTh>
+            <MudTh><MudText Align="Align.Center">@Localize(LocalizeKeys.Vendor)</MudText></MudTh>
+            <MudTh><MudText Align="Align.Center">@Localize(LocalizeKeys.IsVisible)</MudText></MudTh>
+            <MudTh><MudText Align="Align.Center">@Localize(LocalizeKeys.NeedsResize)</MudText></MudTh>
+            <MudTh><MudText Align="Align.Center">@Localize(LocalizeKeys.Actions)</MudText></MudTh>
+        </HeaderContent>
+        <RowTemplate Context="product">
+            <MudTd><MudText Align="Align.Center">@product.Number</MudText></MudTd>
+            <MudTd><MudText Align="Align.Center"><img src="@(product.HasMainImage ? product.MainImage.MobileImage.Url : "")" alt="Main image" @onclick="() => ChangeProductMainImage(product)" style="cursor: pointer; width=200px; height:200; @(!product.HasMainImage ? "background: lightgray;" : "")" width="200" height="200" /></MudText></MudTd>
+            <MudTd><MudText Align="Align.Center">@product.ArabicName</MudText></MudTd>
+            <MudTd><MudText Align="Align.Center">@product.EnglishName</MudText></MudTd>
+            <MudTd><MudText Align="Align.Center">@product.Price</MudText></MudTd>
+            <MudTd><MudText Align="Align.Center">@product.StockQuantity</MudText></MudTd>
+            <MudTd>
+                <MudText Align="Align.Center">
+                    @if (product.Vendor != null)
+                    {
+                        @product.Vendor.Name
+                    }
+                    else
+                    {
+                        @Localize(LocalizeKeys.Local)
+                    }
+                </MudText>
+            </MudTd>
+            <MudTd Class="text-center">
+                <MudText Align="Align.Center" @onclick="() => FlipProductVisibility(product)" Style="cursor: pointer">
+                    <MudTooltip Text="@Localize(LocalizeKeys.Flip)">
+                        @if (product.IsVisible)
+                        {
+                            <MudIcon Color="Color.Success" Icon="@Icons.Filled.Check" Size="Size.Medium"></MudIcon>
+                        }
+                        else
+                        {
+                            <MudIcon Color="Color.Error" Icon="@Icons.Filled.RemoveCircle" Size="Size.Medium"></MudIcon>
+                        }
+                    </MudTooltip>
+                </MudText>
+            </MudTd>
+
+            <MudTd Class="text-center">
+                <MudText Align="Align.Center">
+                    @if (product.RequiresResizing)
+                    {
+                        <MudIcon Color="Color.Success" Icon="@Icons.Filled.Check" Size="Size.Medium"></MudIcon>
+                    }
+                    else
+                    {
+                        <MudIcon Color="Color.Error" Icon="@Icons.Filled.RemoveCircle" Size="Size.Medium"></MudIcon>
+                    }
+                </MudText>
+            </MudTd>
+            <MudTd>
+                <MudText Align="Align.Center">
+                    <MudTooltip Text="@Localize(LocalizeKeys.Edit)">
+                        <MudIconButton Disabled="_busy" Color="Color.Warning" Icon="@Icons.Material.Filled.Edit"
+                                       OnClick="() => EditProduct(product.Id)"></MudIconButton>
+                    </MudTooltip>
+
+
+                    <MudTooltip Text="@Localize(LocalizeKeys.Images)">
+                        <MudIconButton Disabled="_busy" Color="Color.Secondary" Icon="@Icons.Material.Filled.Image"
+                                       OnClick="() => GoToProductImages(product.Id)"></MudIconButton>
+                    </MudTooltip>
+
+
+                    <MudTooltip Text="@Localize(LocalizeKeys.Categories)">
+                        <MudIconButton Disabled="_busy" Color="Color.Secondary" Icon="@Icons.Material.Filled.Category"
+                                       OnClick="() => GoToProductCategoriesPage(product.Id)"></MudIconButton>
+                    </MudTooltip>
+
+
+                    <MudTooltip Text="@Localize(LocalizeKeys.States)">
+                        <MudIconButton Disabled="_busy" Color="Color.Secondary" Icon="@Icons.Material.Filled.Article"
+                                       OnClick="() => OpenStatesDrawer(product.Id)"></MudIconButton>
+
+                    </MudTooltip>
+
+                    <MudTooltip Text="@Localize(LocalizeKeys.Delete)">
+
+                        <MudIconButton Disabled="_busy" Color="Color.Error" Icon="@Icons.Material.Filled.Delete"
+                                       OnClick="() => DeleteProduct(product.Id)"></MudIconButton>
+                    </MudTooltip>
+
+                    <MudTooltip Text="@Localize(LocalizeKeys.Resize)">
+                        <MudIconButton Disabled="_busy" Color="Color.Primary" Icon="@Icons.Material.Filled.PhotoSizeSelectActual"
+                                       OnClick="() => ResizeProductImagesAsync(product.Id)"></MudIconButton>
+                    </MudTooltip>
+
+                    <MudTooltip Text="@Localize(LocalizeKeys.WatermarkProduct)">
+                        <MudIconButton Disabled="_busy" Color="Color.Success" Icon="@Icons.Material.Filled.BrandingWatermark"
+                                       OnClick="() => WatermarkProductImagesAsync(product.Id)"></MudIconButton>
+                    </MudTooltip>
+
+                    <MudTooltip Text="@Localize(LocalizeKeys.UnWatermarkProduct)">
+
+                        <MudIconButton Disabled="_busy" Color="Color.Warning" Icon="@Icons.Material.Filled.Remove"
+                                       OnClick="() => UnWatermarkProductImagesAsync(product.Id)"></MudIconButton>
+                    </MudTooltip>
+                </MudText>
+            </MudTd>
+        </RowTemplate>
+        <NoRecordsContent>
+            <MudText Align="Align.Center">@Localize(LocalizeKeys.NoRecordsFound)</MudText>
+        </NoRecordsContent>
+        <LoadingContent>
+            <MudText Align="Align.Center">@(Localize(LocalizeKeys.Loading))...</MudText>
+        </LoadingContent>
+        <PagerContent>
+            <MudTablePager />
+        </PagerContent>
+    </MudTable>
+</MudCard>
+
+@if (_drawerOpened)
+{
+    <MudDrawer @bind-Open="_drawerOpened" Width="40%" Anchor="Anchor.Right" Elevation="1" Variant="DrawerVariant.Temporary">
+        <div class="pa-3">
+            <ProductStatesEditor ProductId="@_currentDrawerProductId" />
+        </div>
+    </MudDrawer>
+}

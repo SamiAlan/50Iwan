@@ -1,0 +1,24 @@
+﻿@layout LoginLayout
+@page "/admin/login"
+
+<MudText Typo="Typo.h4" GutterBottom="true">@Localize(LocalizeKeys.Login)</MudText>
+
+
+<EditForm Model="loginCredentials" OnValidSubmit="LoginAsync">
+    <FluentValidationValidator Validator="validator" />
+
+    <MudTextField @bind-Value="loginCredentials.Email" Variant="Variant.Outlined" Class="my-6" Label="@Localize(LocalizeKeys.Email)" Required="true" />
+    <ValidationMessage For="() => loginCredentials.Email"></ValidationMessage>
+
+    <MudTextField @bind-Value="@loginCredentials.Password" Label="@Localize(LocalizeKeys.Password)"
+                  Variant="Variant.Outlined" InputType="@PasswordInput" Adornment="Adornment.End"
+                  AdornmentIcon="@PasswordInputIcon" OnAdornmentClick="TogglePasswordVisibility" />
+    <ValidationMessage For="() => loginCredentials.Password" style="color: red"></ValidationMessage>
+
+    <div Class="d-flex justify-space-between align-center">
+        <MudCheckBox T="bool" Label="Remember me?" Color="Color.Primary" Class="ml-n1 my-3"></MudCheckBox>
+    </div>
+
+    <MudButton Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large"
+               FullWidth="true" Disabled="@busy" ButtonType="ButtonType.Submit">@Localize(LocalizeKeys.Login)</MudButton>
+</EditForm>

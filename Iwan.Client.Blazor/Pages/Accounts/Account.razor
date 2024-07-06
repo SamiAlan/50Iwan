@@ -1,0 +1,18 @@
+﻿@page "/admin/account"
+@attribute [Authorize(Roles = $"{Roles.Admin}, { Roles.SuperAdmin }")]
+
+@using Iwan.Client.Blazor.Components.Accounts
+@using Iwan.Shared
+
+<MudTabs Outlined="true">
+    <MudTabPanel Text="@Localizer.Localize(LocalizeKeys.Profile)" Icon="@Icons.Material.Filled.Face">
+        <Profile />
+    </MudTabPanel>
+    <MudTabPanel Text="@Localizer.Localize(LocalizeKeys.Security)" Icon="@Icons.Material.Filled.Password">
+        <ChangePassword />
+    </MudTabPanel>
+</MudTabs>
+
+@code {
+    [Inject] IStringLocalizer<Localization> Localizer { get; set; }
+}

@@ -1,0 +1,42 @@
+﻿<MudPaper Class="pa-16 ma-2" Elevation="3">
+    <MudText Typo="Typo.h5" Class="mb-5">@Localize(LocalizeKeys.ContactUsSection)</MudText>
+    <EditForm Model="_contactUsSection" OnValidSubmit="UpdateSectionAsync">
+        <ServerValidation @ref="_serverValidator"></ServerValidation>
+
+        <MudGrid>
+            <MudItem xs="12" sm="12" md="6">
+                <MudText Align="Align.Left" Color="MudBlazor.Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.Location)</MudText>
+                <MudTextField @bind-Value="_contactUsSection.Location" For="() => _contactUsSection.Location" Variant="Variant.Outlined"></MudTextField>
+            </MudItem>
+            <MudItem xs="12" sm="12" md="6">
+                <MudText Align="Align.Left" Color="MudBlazor.Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.Email)</MudText>
+                <MudTextField @bind-Value="_contactUsSection.Email" For="() => _contactUsSection.Email" Variant="Variant.Outlined"></MudTextField>
+            </MudItem>
+            <MudItem xs="12" sm="12" md="6">
+                <MudText Align="Align.Left" Color="MudBlazor.Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.PhoneNumber)</MudText>
+                <MudTextField @bind-Value="_contactUsSection.PhoneNumber" For="() => _contactUsSection.PhoneNumber" Variant="Variant.Outlined"></MudTextField>
+            </MudItem>
+            <MudItem xs="12" sm="12" md="6">
+                <MudText Align="Align.Left" Color="MudBlazor.Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.FacebookUrl)</MudText>
+                <MudTextField @bind-Value="_contactUsSection.FacebookUrl" For="() => _contactUsSection.FacebookUrl" Variant="Variant.Outlined"></MudTextField>
+            </MudItem>
+            <MudItem xs="12" sm="12" md="6">
+                <MudText Align="Align.Left" Color="MudBlazor.Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.InstagramUrl)</MudText>
+                <MudTextField @bind-Value="_contactUsSection.InstagramUrl" For="() => _contactUsSection.InstagramUrl" Variant="Variant.Outlined"></MudTextField>
+            </MudItem>
+        </MudGrid>
+
+        <MudButton Variant="Variant.Filled" Color="MudBlazor.Color.Primary" Disabled="@busy"
+                   ButtonType="ButtonType.Submit" Class="mt-3 ml-auto">
+            @if (busy)
+            {
+                <MudProgressCircular Indeterminate="true" Color="MudBlazor.Color.Primary" Size="Size.Medium" />
+            }
+            else
+            {
+                @Localize(LocalizeKeys.Edit)
+            }
+        </MudButton>
+    </EditForm>
+</MudPaper>
+

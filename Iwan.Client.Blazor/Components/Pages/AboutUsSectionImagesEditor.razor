@@ -1,0 +1,17 @@
+﻿<MudGrid>
+    @if (_aboutUsImages.Any())
+    {
+        foreach (var image in _aboutUsImages)
+        {
+            <MudItem xs="12" sm="12" md="6" lg="2">
+                <AboutUsImage Image="image" ImageDeleted="OnImageDeleted" />
+            </MudItem>
+        }
+
+    }
+
+    <MudItem xs="12" sm="12" md="6" lg="2">
+        <TempImageUploader CanUploadAfterUploaded="false" ResetAfterUpload="true" ParentBusy="busy"
+                           TempImageUploaded="AddAboutUsImageAsync" TValidationFor="object" />
+    </MudItem>
+</MudGrid>

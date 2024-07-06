@@ -1,0 +1,62 @@
+﻿@page "/admin/settings/watermark"
+@attribute [Authorize(Roles = $"{Roles.Admin}, { Roles.SuperAdmin }")]
+@using Iwan.Client.Blazor.Components.Settings
+
+<MudPaper Class="pa-16 ma-2" Elevation="3">
+    <MudText Typo="Typo.h5" Class="mb-5">@Localize(LocalizeKeys.WatermarkSettings)</MudText>
+    <EditForm Model="_editSettings" OnValidSubmit="UpdateSettingsAsync">
+        <FluentValidationValidator Validator="_validator"></FluentValidationValidator>
+        <ServerValidation @ref="_serverValidator"></ServerValidation>
+
+        <MudGrid>
+            <MudItem xs="6" sm="6" md="6" lg="6">
+                <MudText Align="Align.Left" Color="Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.Opacity)</MudText>
+                <MudNumericField Step="0.1f" T="float" Culture="new System.Globalization.CultureInfo(AppLanguages.English.Culture)" @bind-Value="_editSettings.Opacity" For="() => _editSettings.Opacity"></MudNumericField>
+            </MudItem>
+            <MudItem xs="6" sm="6" md="6" lg="6">
+                <MudText Align="Align.Left" Color="Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.ShouldAddWatermark)</MudText>
+                <MudSwitch @bind-Checked="_editSettings.ShouldAddWatermark" For="() => _editSettings.ShouldAddWatermark"
+                           Color="Color.Success"></MudSwitch>
+                <ValidationMessage For="() => _editSettings.ShouldAddWatermark" style="color: red;" />
+            </MudItem>
+        </MudGrid>
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" FullWidth="true" Disabled="@busy"
+                   ButtonType="ButtonType.Submit" Class="mt-5 ml-auto">
+            @if (busy)
+            {
+                <MudProgressCircular Indeterminate="true" Color="Color.Primary" Size="Size.Medium" />
+            }
+            else
+            {
+                @Localize(LocalizeKeys.Edit)
+            }
+        </MudButton>
+    </EditForm>
+
+    <MudDivider Class="my-5" />
+    <MudText Typo="Typo.subtitle1">@Localize(LocalizeKeys.Image)</MudText>
+    <WatermarkImageEditor Image="_image" />
+    @*<MudButton Variant="Variant.Filled" Color="Color.Success" Disabled="@busy"
+               ButtonType="ButtonType.Submit" Class="mt-7 ml-auto" OnClick="StartWatermarkingBackgroundJobAsync">
+        @if (busy)
+        {
+            <MudProgressCircular Indeterminate="true" Color="Color.Primary" Size="Size.Medium" />
+        }
+        else
+        {
+            @Localize(LocalizeKeys.WatermarkImages)
+        }
+    </MudButton>
+
+    <MudButton Variant="Variant.Filled" Color="Color.Warning" Disabled="@busy"
+               ButtonType="ButtonType.Submit" Class="mx-4 mt-7 ml-auto" OnClick="StartUnWatermarkingBackgroundJobAsync">
+        @if (busy)
+        {
+            <MudProgressCircular Indeterminate="true" Color="Color.Primary" Size="Size.Medium" />
+        }
+        else
+        {
+            @Localize(LocalizeKeys.UnWatermarkImages)
+        }
+    </MudButton>*@
+</MudPaper>

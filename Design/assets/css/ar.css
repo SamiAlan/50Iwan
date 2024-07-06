@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap');
+*{
+    font-family: 'Cairo', sans-serif  !important;
+}
+.item-counter,
+.pagination {
+    flex-direction: row-reverse;
+}
+
+.contact-info {
+    direction: ltr;
+}
+
+.product-details .accordion .info .info-container p {
+    margin-right: 20px;
+}
+
+
+
+.color-picker .text h4 {
+    font-size: 20px;
+    margin-right: 0px;
+    margin-left: 20px;
+  }
+
+  @media only screen and (max-width: 770px) {
+    .categories .banner {
+        flex-direction: column;
+    }
+  }

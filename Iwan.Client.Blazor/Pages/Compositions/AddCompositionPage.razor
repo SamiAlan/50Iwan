@@ -1,0 +1,84 @@
+﻿@page "/admin/compositions/add"
+@using Iwan.Shared.Validators.Compositions.Admin
+@attribute [Authorize(Roles = $"{Roles.Admin}, { Roles.SuperAdmin }")]
+
+<MudContainer MaxWidth="MaxWidth.False">
+    <MudButton Variant="Variant.Text" Color="Color.Secondary" IconColor="Color.Secondary"
+               StartIcon="@Icons.Outlined.ArrowLeft" OnClick="GoToCompositionsPage">
+        @Localize(LocalizeKeys.Back)
+    </MudButton>
+    <EditForm Model="composition" OnValidSubmit="AddCompositionAsync">
+        <FluentValidationValidator Validator="_compositionValidator" DisableAssemblyScanning="true" />
+        <ServerValidation @ref="_serverValidator" />
+
+        <MudCard Class="p-3">
+            <MudCardHeader>
+                <CardHeaderContent>
+                    <MudText Align="Align.Center" Typo="Typo.h4">@Localize(LocalizeKeys.AddNewComposition)</MudText>
+                </CardHeaderContent>
+            </MudCardHeader>
+            <MudCardContent>
+                <MudGrid>
+                    <MudItem xs="12" sm="12" md="6">
+                        <MudTextField @bind-Value="composition.ArabicName" For="() => composition.ArabicName"
+                                      Label="@Localize(LocalizeKeys.ArabicName)" Class="mb-5" Variant="Variant.Outlined" />
+
+                        <MudTextField @bind-Value="composition.EnglishName" For="() => composition.EnglishName"
+                                      Label="@Localize(LocalizeKeys.EnglishName)" Class="mb-5" Variant="Variant.Outlined" />
+
+                        <MudTextField @bind-Value="composition.ArabicDescription" For="() => composition.ArabicDescription"
+                                      Label="@Localize(LocalizeKeys.ArabicDescription)" Class="mb-5" Lines="5"
+                                      Variant="Variant.Outlined" />
+
+                        <MudTextField @bind-Value="composition.EnglishDescription" For="() => composition.EnglishDescription"
+                                      Label="@Localize(LocalizeKeys.EnglishDescription)" Class="mb-5" Lines="5"
+                                      Variant="Variant.Outlined" />
+                    </MudItem>
+
+                    <MudItem xs="12" sm="12" md="6">
+                        <MudSwitch @bind-Checked="composition.IsVisible" Label="@Localize(LocalizeKeys.IsVisible)"
+                                   For="() => composition.IsVisible" Color="Color.Success" Class="mb-5"  />
+
+                        <MudSelect Class="mb-5" T="int" @bind-Value="composition.ColorTypeId" Label="@Localize(LocalizeKeys.BackgroundColor)"
+                                   Placeholder="@Localize(LocalizeKeys.SelectColor)" Items AnchorOrigin="Origin.BottomCenter"
+                                   For="() => composition.ColorTypeId" Variant="Variant.Outlined">
+                            @foreach (var type in Enum.GetValues<ColorType>())
+                            {
+                                <MudSelectItem Value="@((int)type)">@Localize(type.ToString())</MudSelectItem>
+                            }
+                        </MudSelect>
+
+                        @if (composition.ColorType == ColorType.Custom)
+                        {
+                            <MudColorPicker Class="mb-5" @bind-Text="composition.ColorCode" Style="@($"color: {composition.ColorCode};")"
+                                        Placeholder="@Localize(LocalizeKeys.SelectColor)" Label="@Localize(LocalizeKeys.BackgroundColor)"
+                                        ColorPickerView="ColorPickerView.Spectrum" Variant="Variant.Outlined" />
+                            <ValidationMessage For="() => composition.ColorCode" />
+                        }
+
+                        <ValidationMessage For="() => composition.ColorCode" />
+
+                        <TempImageUploader ValidationFor="() => composition.Image" TempImageDeleted="OnTempImageDeleted"
+                                           UploadingTempImage="OnUploadingTempImage" TempImageUploaded="OnTempImageUploaded">
+                        </TempImageUploader>
+                    </MudItem>
+                </MudGrid>
+
+            </MudCardContent>
+            <MudCardActions>
+                <MudButton Variant="Variant.Filled" Color="Color.Primary" Disabled="@busy"
+                           ButtonType="ButtonType.Submit" Class="ml-auto">
+                    @if (busy)
+                    {
+                        <MudProgressCircular Indeterminate="true" Color="Color.Primary" Size="Size.Medium">
+                        </MudProgressCircular>
+                    }
+                    else
+                    {
+                        @Localize(LocalizeKeys.Add)
+                    }
+                </MudButton>
+            </MudCardActions>
+        </MudCard>
+    </EditForm>
+</MudContainer>

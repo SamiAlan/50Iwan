@@ -1,0 +1,33 @@
+﻿@using Iwan.Client.Blazor.Services.Accounts
+@using Iwan.Client.Blazor.Components.Accounts
+@using Iwan.Shared.Dtos.Accounts
+
+<PersonCard Style="background-color: var(--mud-palette-drawer-background);color: var(--mud-palette-drawer-text);" User="_currentUser"/>
+<MudDivider Class="mb-4" />
+<MudNavMenu>
+    <MudNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Outlined.Dashboard" Href="@AppPages.Index">@Localize(LocalizeKeys.Home)</MudNavLink>
+    <MudNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Outlined.Person" Href="@AppPages.Account">@Localize(LocalizeKeys.Account)</MudNavLink>
+    <MudNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Outlined.EmojiObjects" Href="@AppPages.Products">@Localize(LocalizeKeys.Products)</MudNavLink>
+    <MudNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Outlined.Category" Href="@AppPages.Categories">@Localize(LocalizeKeys.Categories)</MudNavLink>
+    <MudNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Outlined.Group" Href="@AppPages.Compositions">@Localize(LocalizeKeys.Compositions)</MudNavLink>
+    <MudNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Outlined.People" Href="@AppPages.Vendors">@Localize(LocalizeKeys.Vendors)</MudNavLink>
+    <MudNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Outlined.Slideshow" Href="@AppPages.SliderImages">@Localize(LocalizeKeys.SliderImages)</MudNavLink>
+    <MudNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Outlined.VerifiedUser" Href="@AppPages.Users">@Localize(LocalizeKeys.Users)</MudNavLink>
+    <MudNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Outlined.Work" Href="@AppPages.BackgroundJobs">@Localize(LocalizeKeys.BackgroundJobs)</MudNavLink>
+    <MudNavGroup Title="@Localize(LocalizeKeys.Settings)"
+                 Icon="@Icons.Material.Filled.Settings"
+                 ExpandIcon="@Icons.Material.Filled.ExpandMore">
+        <MudNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Outlined.Image" Href="@AppPages.ImagesSettings">@Localize(LocalizeKeys.Images)</MudNavLink>
+        <MudNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Outlined.Timer" Href="@AppPages.TempImagesSettings">@Localize(LocalizeKeys.TempImages)</MudNavLink>
+        <MudNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Outlined.BrandingWatermark" Href="@AppPages.WatermarkSettings">@Localize(LocalizeKeys.Watermark)</MudNavLink>
+    </MudNavGroup>
+
+    <MudText Typo="Typo.subtitle2" Color="Color.Inherit" Class="ml-4 my-3">@Localize(LocalizeKeys.Pages)</MudText>
+    <MudNavLink Href="@AppPages.HomePage" Icon="@Icons.Material.Outlined.FirstPage">@Localize(LocalizeKeys.Home)</MudNavLink>
+    <MudNavLink Href="@AppPages.ProductDetailsPage" Icon="@Icons.Material.Outlined.Details">@Localize(LocalizeKeys.ProductDetails)</MudNavLink>
+
+    <MudText Typo="Typo.subtitle2" Color="Color.Inherit" Class="ml-4 my-3">@Localize(LocalizeKeys.Apps)</MudText>
+    <MudNavLink Href="/downloads/image-manager" Icon="@Icons.Material.Outlined.Image">@Localize(LocalizeKeys.ImageManagerApp)</MudNavLink>
+</MudNavMenu>
+
+

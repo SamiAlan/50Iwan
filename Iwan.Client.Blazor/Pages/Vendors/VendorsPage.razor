@@ -1,0 +1,86 @@
+﻿@page "/admin/vendors"
+@using Iwan.Shared.Dtos.Vendors
+@attribute [Authorize(Roles = $"{Roles.Admin}, { Roles.SuperAdmin }")]
+
+<MudText Typo="Typo.h5" Color="Color.Primary" Class="mb-4">@Localize(LocalizeKeys.Vendors)</MudText>
+<MudCard Style="padding: 2rem">
+    <MudCardHeader>
+        <CardHeaderActions>
+            <MudButton Color="Color.Primary" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Add" OnClick="() => NavigationManager.NavigateTo(AppPages.AddVendor)">
+                @Localize(LocalizeKeys.Add)
+            </MudButton>
+        </CardHeaderActions>
+        <CardHeaderContent>
+            <MudText Class="mb-5" Align="Align.Left" Color="Color.Dark" Typo="Typo.h5" GutterBottom="true">@Localize(LocalizeKeys.SearchOptions)</MudText>
+            <MudDivider Light="false" DividerType="DividerType.Inset" Class="mb-5"></MudDivider>
+            <MudGrid>
+                <MudItem xs="6" sm="6" md="4" lg="3">
+                    <MudText Align="Align.Left" Color="Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.Name)</MudText>
+                    <MudTextField @bind-Value="options.Name" For="() => options.Name" Clearable="true" Placeholder="@Localize(LocalizeKeys.Name)"></MudTextField>
+                </MudItem>
+                <MudItem xs="6" sm="6" md="4" lg="3">
+                    <MudText Align="Align.Left" Color="Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.OnlyVendorsShowingProducts)</MudText>
+                    <MudSwitch @bind-Checked="options.OnlyVendorsShowingTheirProducts" For="() => options.OnlyVendorsShowingTheirProducts" Color="Color.Success"></MudSwitch>
+                </MudItem>
+                <MudItem xs="6" sm="6" md="4" lg="3">
+                    <MudText Align="Align.Left" Color="Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.MinBenefitPercent)</MudText>
+                    <MudNumericField @bind-Value="options.MinBenefitPercentage" For="() => options.MinBenefitPercentage"></MudNumericField>
+                </MudItem>
+                <MudItem xs="6" sm="6" md="4" lg="3">
+                    <MudText Align="Align.Left" Color="Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.MaxBenefitPercent)</MudText>
+                    <MudNumericField @bind-Value="options.MaxBenefitPercentage" For="() => options.MaxBenefitPercentage"></MudNumericField>
+                </MudItem>
+                <MudItem sm="12" md="12" lg="12">
+                    <MudButton Color="Color.Primary" FullWidth="true" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Search" OnClick="ReloadDataAsync">
+                        @Localize(LocalizeKeys.Search)
+                    </MudButton>
+                </MudItem>
+            </MudGrid>
+        </CardHeaderContent>
+    </MudCardHeader>
+
+
+    <MudTable Class="mt-3" ServerData="@(new Func<TableState, Task<TableData<VendorDto>>>(SearchData))"
+              Dense="true" Hover="true" @ref="table" CurrentPage="options.CurrentPage">
+        <HeaderContent>
+
+            <MudTh><MudText Align="Align.Center">@Localize(LocalizeKeys.Name)</MudText></MudTh>
+            <MudTh><MudText Align="Align.Center">@Localize(LocalizeKeys.ShowOwnProducts)</MudText></MudTh>
+            <MudTh><MudText Align="Align.Center">@Localize(LocalizeKeys.BenefitPercent)</MudText></MudTh>
+            <MudTh><MudText Align="Align.Center">@Localize(LocalizeKeys.Actions)</MudText></MudTh>
+        </HeaderContent>
+        <RowTemplate Context="vendor">
+            <MudTd><MudText Align="Align.Center">@vendor.Name</MudText></MudTd>
+            <MudTd Class="text-center">
+                <MudText Align="Align.Center">
+                    @if (vendor.ShowOwnProducts)
+                    {
+                        <MudIcon Color="Color.Success" Icon="@Icons.Filled.Check" Size="Size.Medium"></MudIcon>
+                    }
+                    else
+                    {
+                        <MudIcon Color="Color.Error" Icon="@Icons.Filled.RemoveCircle" Size="Size.Medium"></MudIcon>
+                    }
+                </MudText>
+            </MudTd>
+            <MudTd Class="text-center"><MudText Align="Align.Center">@vendor.BenefitPercent</MudText></MudTd>
+            <MudTd>
+                <MudText Align="Align.Center">
+                    <MudIconButton Disabled="busy" Color="Color.Warning" Icon="@Icons.Material.Filled.Edit"
+                                   OnClick="() => EditVendor(vendor.Id)"></MudIconButton>
+                    <MudIconButton Disabled="busy" Color="Color.Error" Icon="@Icons.Material.Filled.Delete"
+                                   OnClick="() => DeleteVendorAsync(vendor.Id)"></MudIconButton>
+                </MudText>
+            </MudTd>
+        </RowTemplate>
+        <NoRecordsContent>
+            <MudText Align="Align.Center">@Localize(LocalizeKeys.NoRecordsFound)</MudText>
+        </NoRecordsContent>
+        <LoadingContent>
+            <MudText Align="Align.Center">@(Localize(LocalizeKeys.Loading))...</MudText>
+        </LoadingContent>
+        <PagerContent>
+            <MudTablePager />
+        </PagerContent>
+    </MudTable>
+</MudCard>

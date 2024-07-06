@@ -1,0 +1,13 @@
+﻿@if (_tempImageFromWatermarkImage != null)
+{
+    <TempImageUploader CanUploadAfterUploaded="true" CanDeleteAfterUploaded="false"
+                   UploadedTempImage="_tempImageFromWatermarkImage" TValidationFor="object" TempImageUploaded="ChangeImageAsync"
+                   AddLightGrayBackground="true">
+    </TempImageUploader>
+}
+else
+{
+    <TempImageUploader CanUploadAfterUploaded="false" ResetAfterUpload="true" TValidationFor="object"
+                   TempImageUploaded="ChangeImageAsync">
+    </TempImageUploader>
+}

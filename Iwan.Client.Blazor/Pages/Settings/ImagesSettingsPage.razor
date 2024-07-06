@@ -1,0 +1,9 @@
+﻿@page "/admin/settings/images"
+@using Iwan.Client.Blazor.Components.Settings
+@attribute [Authorize(Roles = $"{Roles.Admin}, { Roles.SuperAdmin }")]
+
+<EditCategoryImagesSettings ImagesSettings="_settings" />
+<EditProductImagesSettings ImagesSettings="_settings" />
+<EditCompositionImagesSettings ImagesSettings="_settings" />
+<EditSliderImagesSettings ImagesSettings="_settings" />
+<EditAboutUsSectionImagesSettings ImagesSettings="_settings" />

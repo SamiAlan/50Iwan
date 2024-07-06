@@ -1,0 +1,86 @@
+﻿@page "/admin/categories/{id}/edit"
+@using Iwan.Shared.Validators.Catalog.Admin
+@attribute [Authorize(Roles = $"{Roles.Admin}, { Roles.SuperAdmin }")]
+
+<MudContainer MaxWidth="MaxWidth.False">
+    <MudButton Variant="Variant.Text" Color="Color.Secondary" IconColor="Color.Secondary"
+               StartIcon="@Icons.Outlined.ArrowLeft" OnClick="GoToCategoriesPage">
+        @Localize(LocalizeKeys.Back)
+    </MudButton>
+    <EditForm Model="category" OnValidSubmit="EditCategoryAsync">
+        <FluentValidationValidator Validator="_categoryValidator" DisableAssemblyScanning="true" />
+        <ServerValidation @ref="_serverValidator" />
+
+        <MudCard Class="p-3">
+            <MudCardHeader>
+                <CardHeaderContent>
+                    <MudText Align="Align.Center" Typo="Typo.h4">@Localize(LocalizeKeys.EditCategory)</MudText>
+                </CardHeaderContent>
+            </MudCardHeader>
+            <MudCardContent>
+                <MudGrid>
+                    <MudItem xs="12" sm="12" md="6">
+                        <MudTextField @bind-Value="category.ArabicName" For="() => category.ArabicName"
+                                      Label="@Localize(LocalizeKeys.ArabicName)" Class="mb-5" Variant="Variant.Outlined" />
+
+                        <MudTextField @bind-Value="category.EnglishName" For="() => category.EnglishName"
+                                      Label="@Localize(LocalizeKeys.EnglishName)" Class="mb-5" Variant="Variant.Outlined" />
+
+                        <MudSwitch @bind-Checked="category.IsVisible" Label="@Localize(LocalizeKeys.IsVisible)"
+                                   For="() => category.IsVisible" Color="Color.Success" Class="mb-5" />
+
+                    </MudItem>
+                    <MudItem xs="12" sm="12" md="6">
+                        <MudSelect Class="mb-5" T="string" @bind-Value="category.ParentCategoryId"
+                                   Label="@Localize(LocalizeKeys.ParentCategory)"
+                                   Placeholder="@Localize(LocalizeKeys.SelectParentCategory)" AnchorOrigin="Origin.BottomCenter"
+                                   For="() => category.ParentCategoryId" Variant="Variant.Outlined">
+                            <MudSelectItem T="string">@Localize(LocalizeKeys.None)</MudSelectItem>
+
+                            @if (_parentCategories != null)
+                            {
+                                foreach (var parentCategory in _parentCategories)
+                                {
+                                    <MudSelectItem T="string" Value="@parentCategory.Id">
+                                        @parentCategory.EnglishName - @parentCategory.ArabicName
+                                    </MudSelectItem>
+                                }
+                            }
+
+                        </MudSelect>
+
+                        <MudSelect Class="mb-5" T="int" @bind-Value="category.ColorTypeId" Label="@Localize(LocalizeKeys.BackgroundColor)"
+                                   Placeholder="@Localize(LocalizeKeys.SelectColor)" AnchorOrigin="Origin.BottomCenter"
+                                   For="() => category.ColorTypeId" Variant="Variant.Outlined">
+                            @foreach (var type in Enum.GetValues<ColorType>())
+                            {
+                                <MudSelectItem Value="@((int)type)">@Localize(type.ToString())</MudSelectItem>
+                            }
+                        </MudSelect>
+
+                        @if (category.ColorTypeId == (int)ColorType.Custom)
+                        {
+                            <MudColorPicker Class="mb-5" @bind-Text="category.ColorCode" Style="@($"color: {category.ColorCode};")"
+                                        Placeholder="@Localize(LocalizeKeys.SelectColor)" Label="@Localize(LocalizeKeys.BackgroundColor)"
+                                        ColorPickerView="ColorPickerView.Spectrum" Variant="Variant.Outlined" />
+                            <ValidationMessage For="() => category.ColorCode" />
+                        }
+                    </MudItem>
+                </MudGrid>
+            </MudCardContent>
+            <MudCardActions>
+                <MudButton Variant="Variant.Filled" Color="Color.Primary" Disabled="@busy"
+                           ButtonType="ButtonType.Submit" Class="ml-auto">
+                    @if (busy)
+                    {
+                        <MudProgressCircular Indeterminate="true" Color="Color.Primary" Size="Size.Medium" />
+                    }
+                    else
+                    {
+                        @Localize(LocalizeKeys.Edit)
+                    }
+                </MudButton>
+            </MudCardActions>
+        </MudCard>
+    </EditForm>
+</MudContainer>

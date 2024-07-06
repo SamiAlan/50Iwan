@@ -1,0 +1,1290 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="A category can't extend itself" xml:space="preserve">
+    <value>الصنف لا يمكن ان يوسع نفسه</value>
+  </data>
+  <data name="A conflict occured with the requested categories" xml:space="preserve">
+    <value>ظهر تناقد بلاصناف المطلوبة</value>
+  </data>
+  <data name="A job already working on the images" xml:space="preserve">
+    <value>يوجد عملية تجري تعديلا على الصور</value>
+  </data>
+  <data name="About US" xml:space="preserve">
+    <value>من نحن</value>
+  </data>
+  <data name="About Us section" xml:space="preserve">
+    <value>قسم من نحن</value>
+  </data>
+  <data name="About us section images settings updated" xml:space="preserve">
+    <value>تم تعديل اعدادات صور قسم من نحن</value>
+  </data>
+  <data name="About us section images updated" xml:space="preserve">
+    <value>تم تعديل صور قسم من نحن</value>
+  </data>
+  <data name="About-Us image added" xml:space="preserve">
+    <value>تم اضافة صور لقسم من نحن</value>
+  </data>
+  <data name="About-Us section updated" xml:space="preserve">
+    <value>تم تعديل قسم من نحن</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>الحساب</value>
+  </data>
+  <data name="Account is not verified yet" xml:space="preserve">
+    <value>الحساب غير مفعل</value>
+  </data>
+  <data name="Actions" xml:space="preserve">
+    <value>أفعال</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>إضافة</value>
+  </data>
+  <data name="Add new category" xml:space="preserve">
+    <value>إضافة صنف جدجد</value>
+  </data>
+  <data name="Add new composition" xml:space="preserve">
+    <value>إضافة تجميع جديد</value>
+  </data>
+  <data name="Add new product" xml:space="preserve">
+    <value>إضافة منتج جديد</value>
+  </data>
+  <data name="Add new user" xml:space="preserve">
+    <value>إضافة مستخدم جديد</value>
+  </data>
+  <data name="Add new vendor" xml:space="preserve">
+    <value>إضافة بائع جديد</value>
+  </data>
+  <data name="Add slider image" xml:space="preserve">
+    <value>إضافة صورة سلايدر جديدة</value>
+  </data>
+  <data name="Address 1" xml:space="preserve">
+    <value>عنوان 1</value>
+  </data>
+  <data name="Address 2" xml:space="preserve">
+    <value>عنوان 2</value>
+  </data>
+  <data name="Address edited successfully" xml:space="preserve">
+    <value>تم تعديل العنوان</value>
+  </data>
+  <data name="Address not found" xml:space="preserve">
+    <value>لم يتم العثور على العنوان</value>
+  </data>
+  <data name="Age" xml:space="preserve">
+    <value>العمر</value>
+  </data>
+  <data name="An error occured" xml:space="preserve">
+    <value>ظهر خطأ</value>
+  </data>
+  <data name="An error occured at the server while adding the category" xml:space="preserve">
+    <value>ظهر خطأ اثناء اضافة الصنف</value>
+  </data>
+  <data name="An error occured at the server while adding the composition" xml:space="preserve">
+    <value>ظهر خطأ اثناء اضافة التجميعة</value>
+  </data>
+  <data name="An error occured at the server while adding the product" xml:space="preserve">
+    <value>ظهر خطأ اثناء اضافة المنتج</value>
+  </data>
+  <data name="An error occured at the server while adding the slider image" xml:space="preserve">
+    <value>ظهر خطأ اثناء اضافة صورة السلايدر</value>
+  </data>
+  <data name="An error occured at the server while adding the user" xml:space="preserve">
+    <value>طهر خطأ اثناء اضافة المستخدم</value>
+  </data>
+  <data name="An error occured at the server while adding the vendor" xml:space="preserve">
+    <value>ظهر خطأ اثناء اضافة البائع</value>
+  </data>
+  <data name="An error occured at the server while changing the composition image" xml:space="preserve">
+    <value>ظهر خطا اثناء تغيير صورة التجميعة</value>
+  </data>
+  <data name="An error occured at the server while changing the product's main image" xml:space="preserve">
+    <value>ظهر خطأ اثناء تغيير صورة المنتج الرئيسية</value>
+  </data>
+  <data name="An error occured at the server while deleting the category" xml:space="preserve">
+    <value>ظهر خطأ اثنائ خذف الصنف</value>
+  </data>
+  <data name="An error occured at the server while deleting the composition" xml:space="preserve">
+    <value>ظهر خطأ اثناء حذف التجميعة</value>
+  </data>
+  <data name="An error occured at the server while deleting the image" xml:space="preserve">
+    <value>ظهر خطأ اثنائ حذف الصورة</value>
+  </data>
+  <data name="An error occured at the server while deleting the product" xml:space="preserve">
+    <value>ظهر خطأ اثناء حذف المنتج</value>
+  </data>
+  <data name="An error occured at the server while deleting the product image" xml:space="preserve">
+    <value>ظهر خطأ اثناء حذف المنتج</value>
+  </data>
+  <data name="An error occured at the server while deleting the slider image" xml:space="preserve">
+    <value>ظهر خطأ اثناء حذف صورة السلايدر</value>
+  </data>
+  <data name="An error occured at the server while deleting the user" xml:space="preserve">
+    <value>ظهر خطأ اثناء حذف المستخدم</value>
+  </data>
+  <data name="An error occured at the server while deleting the vendor" xml:space="preserve">
+    <value>ظهر خطأ اثناء حذف البائع</value>
+  </data>
+  <data name="An error occured at the server while editing the category image" xml:space="preserve">
+    <value>ظهر خطأ اثناء تعديل الصنف</value>
+  </data>
+  <data name="An error occured at the server while editing the composition" xml:space="preserve">
+    <value>ظهر خطأ اثناء تعديل التجميعة</value>
+  </data>
+  <data name="An error occured at the server while updating the user profile" xml:space="preserve">
+    <value>ظهر خطأ اثناء تعديل الملف الشخصي</value>
+  </data>
+  <data name="An error occured at the server while uploading the image" xml:space="preserve">
+    <value>ظهر خطأ اثناء رفع الصورة</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>تطبيق</value>
+  </data>
+  <data name="Approx. age" xml:space="preserve">
+    <value>العمر التقريبي</value>
+  </data>
+  <data name="Apps" xml:space="preserve">
+    <value>التطبيقات</value>
+  </data>
+  <data name="Arabic description" xml:space="preserve">
+    <value>الوصف بلعربية</value>
+  </data>
+  <data name="Arabic name" xml:space="preserve">
+    <value>الاسم العربية</value>
+  </data>
+  <data name="Arabic name can't be empty or whitespace" xml:space="preserve">
+    <value>الاسم بلعربية لا يمكن ان يكون فارغ</value>
+  </data>
+  <data name="Arabic subtitle 1" xml:space="preserve">
+    <value>عنوان جزئي 1 بلعربية</value>
+  </data>
+  <data name="Arabic subtitle 2" xml:space="preserve">
+    <value>عنوان جزئي 2 بلعربية</value>
+  </data>
+  <data name="Arabic text" xml:space="preserve">
+    <value>النص بلعربية</value>
+  </data>
+  <data name="Arabic title" xml:space="preserve">
+    <value>العنوان بلعربية</value>
+  </data>
+  <data name="Are you sure you want to delete this category" xml:space="preserve">
+    <value>هل انت متأكد من حذف هذا الصنف</value>
+  </data>
+  <data name="Are you sure you want to delete this composition" xml:space="preserve">
+    <value>هل انت متأكد من حذف هذة التجميعة</value>
+  </data>
+  <data name="Are you sure you want to delete this product" xml:space="preserve">
+    <value>ها انت متأكد من حذف هذا المنتج</value>
+  </data>
+  <data name="Are you sure you want to delete this slider image" xml:space="preserve">
+    <value>هل انت متأكد من حذف صورة السلايدر هذه</value>
+  </data>
+  <data name="Are you sure you want to delete this user" xml:space="preserve">
+    <value>هل انت متأكد من حذف هذا المستخدم</value>
+  </data>
+  <data name="Are you sure you want to delete this vendor" xml:space="preserve">
+    <value>هل انت متأكد من حذف هذا البائع</value>
+  </data>
+  <data name="At least one image should be uploaded" xml:space="preserve">
+    <value>يجب رفع على الاقل صورة واحدة</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>رجوع</value>
+  </data>
+  <data name="Background color" xml:space="preserve">
+    <value>لون الخلفية</value>
+  </data>
+  <data name="Background jobs" xml:space="preserve">
+    <value>العمليات بلخلفية</value>
+  </data>
+  <data name="Benefit percent" xml:space="preserve">
+    <value>الربح بلمية</value>
+  </data>
+  <data name="Bills" xml:space="preserve">
+    <value>الفواتير</value>
+  </data>
+  <data name="Can't add a product without a number" xml:space="preserve">
+    <value>لا يمكن اضافة المنتج بدون رقم</value>
+  </data>
+  <data name="Can't delete yourself" xml:space="preserve">
+    <value>لا يمكن حذف نفسك</value>
+  </data>
+  <data name="Can't extend a sub-category" xml:space="preserve">
+    <value>لا يمكن توسيع صنف جزئي</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>إلغاء</value>
+  </data>
+  <data name="Categories" xml:space="preserve">
+    <value>الأصناف</value>
+  </data>
+  <data name="Categories images settings updated" xml:space="preserve">
+    <value>تم تعديل إعدادات صور الأصناف</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>التصنيفات</value>
+  </data>
+  <data name="Category added successfully" xml:space="preserve">
+    <value>تم إضافة الصنف بنجاح</value>
+  </data>
+  <data name="Category added to product" xml:space="preserve">
+    <value>تم إضافة الصنف الى المنتج</value>
+  </data>
+  <data name="Category already has sub-categories under it" xml:space="preserve">
+    <value>الصنف يحتوي اصناف متصلة به</value>
+  </data>
+  <data name="Category deleted successfully" xml:space="preserve">
+    <value>تم حذف الصنف</value>
+  </data>
+  <data name="Category does not exist" xml:space="preserve">
+    <value>الصنف غير موجود</value>
+  </data>
+  <data name="Category edited successfully" xml:space="preserve">
+    <value>تم تعديل الصنف</value>
+  </data>
+  <data name="Category image changed" xml:space="preserve">
+    <value>تم تغيير صورة الصنف</value>
+  </data>
+  <data name="Category image could not be found" xml:space="preserve">
+    <value>لم يتم العثور على صورة الصنف</value>
+  </data>
+  <data name="Category image required" xml:space="preserve">
+    <value>صورة المنتج اجبارية</value>
+  </data>
+  <data name="Category removed from product" xml:space="preserve">
+    <value>تم حذف الصنف من المنتج</value>
+  </data>
+  <data name="Category with the same name already exists" xml:space="preserve">
+    <value>يوجد صنف بنفس الاسم</value>
+  </data>
+  <data name="Change" xml:space="preserve">
+    <value>تغيير</value>
+  </data>
+  <data name="Change category image" xml:space="preserve">
+    <value>تغيير صورة الصنف</value>
+  </data>
+  <data name="Change composition image" xml:space="preserve">
+    <value>تغيير صورة التجميعة</value>
+  </data>
+  <data name="Change main image" xml:space="preserve">
+    <value>تغيير الصورة الرئيسية</value>
+  </data>
+  <data name="Change password" xml:space="preserve">
+    <value>تغيير كلمة المرور</value>
+  </data>
+  <data name="Choose background color" xml:space="preserve">
+    <value>اختر لون الخلفية</value>
+  </data>
+  <data name="Choosen categories" xml:space="preserve">
+    <value>الأصناف المختارة</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>المدينة</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>مسح</value>
+  </data>
+  <data name="Color" xml:space="preserve">
+    <value>اللون</value>
+  </data>
+  <data name="Color not found" xml:space="preserve">
+    <value>هذا اللون غير موجود</value>
+  </data>
+  <data name="Colors section" xml:space="preserve">
+    <value>قسم الألوان</value>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>الشركة</value>
+  </data>
+  <data name="Composition added successfully" xml:space="preserve">
+    <value>تم إضافة التجميعة بنجاح</value>
+  </data>
+  <data name="Composition deleted successfully" xml:space="preserve">
+    <value>تم تعديل التجميعة بنجاح</value>
+  </data>
+  <data name="Composition does not exist" xml:space="preserve">
+    <value>لم يتم العثور على التجميعة</value>
+  </data>
+  <data name="Composition edited successfully" xml:space="preserve">
+    <value>تم تعديل التجميعة بنجاح</value>
+  </data>
+  <data name="Composition image changed" xml:space="preserve">
+    <value>تم تغيير صورة التجميعة</value>
+  </data>
+  <data name="Composition wth same name already exists" xml:space="preserve">
+    <value>يوجد تجميعة بنفس الاسم</value>
+  </data>
+  <data name="Compositions" xml:space="preserve">
+    <value>التجميعات</value>
+  </data>
+  <data name="Compositions images settings updated" xml:space="preserve">
+    <value>تم تعديل إعدادات صور التجميعات</value>
+  </data>
+  <data name="Condition" xml:space="preserve">
+    <value>الحالة</value>
+  </data>
+  <data name="Confirm new password" xml:space="preserve">
+    <value>تأكيد كلمة المرور الجديدة</value>
+  </data>
+  <data name="Contact Us" xml:space="preserve">
+    <value>تواصل معنا</value>
+  </data>
+  <data name="Contact Us section" xml:space="preserve">
+    <value>قسم تواصل معنا</value>
+  </data>
+  <data name="Contact-Us section updated" xml:space="preserve">
+    <value>تم تعديل قسم تواصل معنا</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>البلد</value>
+  </data>
+  <data name="Custom" xml:space="preserve">
+    <value>يدوي</value>
+  </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>لوحة القيادة</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>إزالة</value>
+  </data>
+  <data name="Delete category" xml:space="preserve">
+    <value>حذف الصنف</value>
+  </data>
+  <data name="Delete composition" xml:space="preserve">
+    <value>حذف التجميعة</value>
+  </data>
+  <data name="Delete product" xml:space="preserve">
+    <value>حذف المنتج</value>
+  </data>
+  <data name="Delete slider image" xml:space="preserve">
+    <value>حذف صورة سلايدر</value>
+  </data>
+  <data name="Delete user" xml:space="preserve">
+    <value>حذف المستخدم</value>
+  </data>
+  <data name="Delete vendor" xml:space="preserve">
+    <value>حذف البائع</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>الوصف</value>
+  </data>
+  <data name="Details file has no number" xml:space="preserve">
+    <value>ملف التفايل لا يحتوي على رقم</value>
+  </data>
+  <data name="Details file has not arabic name" xml:space="preserve">
+    <value>ملف التفاصيل لا يحتوي على اسم بلعربية</value>
+  </data>
+  <data name="Details file has not english name" xml:space="preserve">
+    <value>ملف التفاصيل لا يحتوي على الاسم بلانكليزية</value>
+  </data>
+  <data name="Details file not found" xml:space="preserve">
+    <value>لم يتم العثور على ملف التفاصيل</value>
+  </data>
+  <data name="Dimensions" xml:space="preserve">
+    <value>الأبعاد</value>
+  </data>
+  <data name="Dimensions in arabic" xml:space="preserve">
+    <value>الأبعاد بلعربية</value>
+  </data>
+  <data name="Dimensions in english" xml:space="preserve">
+    <value>الأبعاد بلانكليزية</value>
+  </data>
+  <data name="Drag and drop file here or click" xml:space="preserve">
+    <value>امسك و افلت هنا او اضغط</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>تعديل</value>
+  </data>
+  <data name="Edit category" xml:space="preserve">
+    <value>تعديل الصنف</value>
+  </data>
+  <data name="Edit composition" xml:space="preserve">
+    <value>تعديل التجميعة</value>
+  </data>
+  <data name="Edit product" xml:space="preserve">
+    <value>تعديل المنتج</value>
+  </data>
+  <data name="Edit slider image" xml:space="preserve">
+    <value>تعديل صورة سلايدر</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>الإيميل</value>
+  </data>
+  <data name="Email is required" xml:space="preserve">
+    <value>الايميل اجباري</value>
+  </data>
+  <data name="Email is taken" xml:space="preserve">
+    <value>الايميل مأخوذ</value>
+  </data>
+  <data name="English name" xml:space="preserve">
+    <value>الاسم بلإنكليزية</value>
+  </data>
+  <data name="English name can't be empty or whitespace" xml:space="preserve">
+    <value>الاسم بلانكليزية لا يمكن ان يكون فارغ</value>
+  </data>
+  <data name="English subtitle 1" xml:space="preserve">
+    <value>العنوان الجزئي 1 بلإنكليزية</value>
+  </data>
+  <data name="English subtitle 2" xml:space="preserve">
+    <value>العنوان الجزئي 2 بلإنكليزية</value>
+  </data>
+  <data name="English text" xml:space="preserve">
+    <value>النص بلإنكليزية</value>
+  </data>
+  <data name="English title" xml:space="preserve">
+    <value>العنوان بلإنكليزية</value>
+  </data>
+  <data name="Englsh description" xml:space="preserve">
+    <value>الوصف بلإنكليزية</value>
+  </data>
+  <data name="Error occured" xml:space="preserve">
+    <value>ظهر خطأ</value>
+  </data>
+  <data name="Expiration (in days)" xml:space="preserve">
+    <value>إنتهاء صلاحية (بلأيام)</value>
+  </data>
+  <data name="Facebook url" xml:space="preserve">
+    <value>رابط الفيسبوك</value>
+  </data>
+  <data name="FromParent" xml:space="preserve">
+    <value>من الأب</value>
+  </data>
+  <data name="Having categories" xml:space="preserve">
+    <value>لديها اصناف</value>
+  </data>
+  <data name="Having no main image" xml:space="preserve">
+    <value>التي دون صورة رئيسية</value>
+  </data>
+  <data name="Having products" xml:space="preserve">
+    <value>تحتوي على منتجات</value>
+  </data>
+  <data name="Header section" xml:space="preserve">
+    <value>قسم الترويسة</value>
+  </data>
+  <data name="Header section updated" xml:space="preserve">
+    <value>تم تعديل قسم الترويسة</value>
+  </data>
+  <data name="Height" xml:space="preserve">
+    <value>الإرتفاع</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>الصفحة الرئيسية</value>
+  </data>
+  <data name="If you want to buy" xml:space="preserve">
+    <value>اذا اردت الشراء</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>الصورة</value>
+  </data>
+  <data name="Image could not be found" xml:space="preserve">
+    <value>لم يتم العثور على الصورة</value>
+  </data>
+  <data name="Image file extension not supported" xml:space="preserve">
+    <value>صيغ الصورة غير مدعومة</value>
+  </data>
+  <data name="Image is already the main product's image" xml:space="preserve">
+    <value>صورة المنتج هي بلاصل صورة المنتج الرئيسية</value>
+  </data>
+  <data name="Image is required" xml:space="preserve">
+    <value>الصورة اجبارية</value>
+  </data>
+  <data name="Image manager" xml:space="preserve">
+    <value>مدير الصور</value>
+  </data>
+  <data name="Image not found" xml:space="preserve">
+    <value>الصورة غير موجودة</value>
+  </data>
+  <data name="Images" xml:space="preserve">
+    <value>الصور</value>
+  </data>
+  <data name="Images settings" xml:space="preserve">
+    <value>إعدادات الصور</value>
+  </data>
+  <data name="Images Settings are not saved yet" xml:space="preserve">
+    <value>اعدادات الصورة لم تحفظ بعد</value>
+  </data>
+  <data name="Include images" xml:space="preserve">
+    <value>تضمين الصور</value>
+  </data>
+  <data name="Incorrect password" xml:space="preserve">
+    <value>كلمة مرور خاطئة</value>
+  </data>
+  <data name="Instagram url" xml:space="preserve">
+    <value>رابط الانستاغرام</value>
+  </data>
+  <data name="Interior Design image updated" xml:space="preserve">
+    <value>تم تعديل صورة التصميم الداخلي</value>
+  </data>
+  <data name="Interior Design section" xml:space="preserve">
+    <value>قسم التصميم الداخلي</value>
+  </data>
+  <data name="Interior design section images settings updated" xml:space="preserve">
+    <value>تم تعديل إعدادات صور قسم التصميم الداخلي</value>
+  </data>
+  <data name="Interior Design section updated" xml:space="preserve">
+    <value>تم تعديل قسم التصميم الداخلي</value>
+  </data>
+  <data name="Invaild animation type" xml:space="preserve">
+    <value>نوع تحريك خاطئ</value>
+  </data>
+  <data name="Invalid color code" xml:space="preserve">
+    <value>لون خاطئ</value>
+  </data>
+  <data name="Invalid color type" xml:space="preserve">
+    <value>يجب اختيار نوع الوان</value>
+  </data>
+  <data name="Invalid email address" xml:space="preserve">
+    <value>ايميل خاطئ</value>
+  </data>
+  <data name="Invalid login attempt" xml:space="preserve">
+    <value>تسجيل دخول خاطئ</value>
+  </data>
+  <data name="Invalid phone number" xml:space="preserve">
+    <value>رقم جوال خاطئ</value>
+  </data>
+  <data name="Invalid refresh attempt" xml:space="preserve">
+    <value>محاولة اعادة توليد التوكن خاطئة</value>
+  </data>
+  <data name="Invalid role" xml:space="preserve">
+    <value>دور خاطئ</value>
+  </data>
+  <data name="Item number" xml:space="preserve">
+    <value>رقم القطعة</value>
+  </data>
+  <data name="items" xml:space="preserve">
+    <value>قطع</value>
+  </data>
+  <data name="Length" xml:space="preserve">
+    <value>الطول</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>جاري التحميل</value>
+  </data>
+  <data name="Local" xml:space="preserve">
+    <value>محلي</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>الموقع</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>تسجيل دحول</value>
+  </data>
+  <data name="Login related to system users only" xml:space="preserve">
+    <value>تسججيل دخول خاص بمستخدمي النظام</value>
+  </data>
+  <data name="Login successful" xml:space="preserve">
+    <value>تم تسجيل الدخول بنجاح</value>
+  </data>
+  <data name="Login to your account" xml:space="preserve">
+    <value>تسجيل الدخول الى حسابك</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>تسجيل خروج</value>
+  </data>
+  <data name="Mail" xml:space="preserve">
+    <value>البريد</value>
+  </data>
+  <data name="Mail settings" xml:space="preserve">
+    <value>إعدادات البريد</value>
+  </data>
+  <data name="Mail settings updated" xml:space="preserve">
+    <value>تم تعديل إعدادات البريد</value>
+  </data>
+  <data name="Main image" xml:space="preserve">
+    <value>الصورة الرئيسية</value>
+  </data>
+  <data name="Main image not found" xml:space="preserve">
+    <value>لم يتم العثور على الصورة الاجبارية</value>
+  </data>
+  <data name="Maker arabic name" xml:space="preserve">
+    <value>اسم الصانع بلعربية</value>
+  </data>
+  <data name="Maker english name" xml:space="preserve">
+    <value>اسم الصانع بلإنكليزية</value>
+  </data>
+  <data name="Manual" xml:space="preserve">
+    <value>يدوي</value>
+  </data>
+  <data name="Maximum benefit percent" xml:space="preserve">
+    <value>نسبة الربج العليى</value>
+  </data>
+  <data name="Medium image height" xml:space="preserve">
+    <value>إرتفاع الصورة المتوسطة</value>
+  </data>
+  <data name="Medium image width" xml:space="preserve">
+    <value>عرض الصورة المتوسطة</value>
+  </data>
+  <data name="Minimum benefit percent" xml:space="preserve">
+    <value>نسبة الربج الدنيى</value>
+  </data>
+  <data name="Mobile image" xml:space="preserve">
+    <value>صورة الموبايل</value>
+  </data>
+  <data name="Mobile image height" xml:space="preserve">
+    <value>إرتفاع صورة الموبايل</value>
+  </data>
+  <data name="Mobile image width" xml:space="preserve">
+    <value>عرض صورة الموبايل</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>الاسم</value>
+  </data>
+  <data name="Name can't be empty or whilespace" xml:space="preserve">
+    <value>الاسم لا يمكن ان يكون فارغ</value>
+  </data>
+  <data name="Needs resize" xml:space="preserve">
+    <value>تحتاح لتغيير الحجم</value>
+  </data>
+  <data name="New password" xml:space="preserve">
+    <value>كلمة المرور الجديدة</value>
+  </data>
+  <data name="No records found" xml:space="preserve">
+    <value>لا يوجد نتائج</value>
+  </data>
+  <data name="NoChange" xml:space="preserve">
+    <value>لا تغيير</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>لا شيئ</value>
+  </data>
+  <data name="Number" xml:space="preserve">
+    <value>الرقم</value>
+  </data>
+  <data name="Number of categories" xml:space="preserve">
+    <value>عدد الاصناف</value>
+  </data>
+  <data name="Number of products" xml:space="preserve">
+    <value>عدد المنتجات</value>
+  </data>
+  <data name="Number of vendors" xml:space="preserve">
+    <value>عدد البائعين</value>
+  </data>
+  <data name="Number {0} already exists" xml:space="preserve">
+    <value>الرقم {0} بلاصل موجود</value>
+  </data>
+  <data name="of" xml:space="preserve">
+    <value>من</value>
+  </data>
+  <data name="Old password" xml:space="preserve">
+    <value>كلمة المرور القديمة</value>
+  </data>
+  <data name="Only needing resize" xml:space="preserve">
+    <value>فقط التي تحتاج لتغيير الحجم</value>
+  </data>
+  <data name="Only owned by vendors" xml:space="preserve">
+    <value>فقط المتعلقة بلبائعين</value>
+  </data>
+  <data name="Only rar files supported" xml:space="preserve">
+    <value>فقط ملفات رار مدعومة</value>
+  </data>
+  <data name="Opacity" xml:space="preserve">
+    <value>الشفافية</value>
+  </data>
+  <data name="Order" xml:space="preserve">
+    <value>الترتيب</value>
+  </data>
+  <data name="Pages" xml:space="preserve">
+    <value>الصفجات</value>
+  </data>
+  <data name="Parent category" xml:space="preserve">
+    <value>الصنف الأب</value>
+  </data>
+  <data name="Parent category does not exist" xml:space="preserve">
+    <value>الصنف الأب غير موجود</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>كلمة المرور</value>
+  </data>
+  <data name="Password changed" xml:space="preserve">
+    <value>تم تغيير كلمة المرور</value>
+  </data>
+  <data name="Password is required" xml:space="preserve">
+    <value>كلمة المرور خاطئة</value>
+  </data>
+  <data name="Password should be at least 6 characters long" xml:space="preserve">
+    <value>كلمة المرور يجب ان تكون بطول 6 احرف على الاقل</value>
+  </data>
+  <data name="Password should be at least {0} characters long" xml:space="preserve">
+    <value>كلمة المرور يجب ان تكون بطول {0} احرف</value>
+  </data>
+  <data name="Password should contain at least one digit" xml:space="preserve">
+    <value>كلمة المرور يجب ان تتوفر على رقم على الأقل</value>
+  </data>
+  <data name="Password should contain at least one special character" xml:space="preserve">
+    <value>كلمة المرور يجب ان تتوفر على حرف واحد خاص على الاقل</value>
+  </data>
+  <data name="Password should contain at least one upper-case character" xml:space="preserve">
+    <value>كلمة المرور يجب ان تتوفر على حرف كبير على الاقل</value>
+  </data>
+  <data name="Passwords are not equal" xml:space="preserve">
+    <value>كلمات المرور متماثلة</value>
+  </data>
+  <data name="Passwords are the same" xml:space="preserve">
+    <value>كلمات السر متشابهة</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>معلق</value>
+  </data>
+  <data name="Phone number" xml:space="preserve">
+    <value>رقم الجوال</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>السعر</value>
+  </data>
+  <data name="Processing" xml:space="preserve">
+    <value>يعالج</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>الثطعة</value>
+  </data>
+  <data name="Product '{0}' already belongs to category '{1}'" xml:space="preserve">
+    <value>ينتمي المنتج '{0}' الى الصنف '{1}' بلاصل</value>
+  </data>
+  <data name="Product '{0}' does not belong to the category '{1}'" xml:space="preserve">
+    <value>لا ينتمي المنتج '{0}' الى الصنف '{1}'</value>
+  </data>
+  <data name="Product added successfully" xml:space="preserve">
+    <value>تم إضافة المنتج</value>
+  </data>
+  <data name="Product already exists" xml:space="preserve">
+    <value>المنتج موجود بلاصل</value>
+  </data>
+  <data name="Product categories" xml:space="preserve">
+    <value>أصناف المنتج</value>
+  </data>
+  <data name="Product category could not be found" xml:space="preserve">
+    <value>لم يتم العثور على صنف المنتج</value>
+  </data>
+  <data name="Product deleted successfully" xml:space="preserve">
+    <value>تم حذف المنتج بنجاح</value>
+  </data>
+  <data name="Product details" xml:space="preserve">
+    <value>تفاصيل المنتج</value>
+  </data>
+  <data name="Product does not exist" xml:space="preserve">
+    <value>لم يتم العثور على المنتج</value>
+  </data>
+  <data name="Product edited successfully" xml:space="preserve">
+    <value>تم تعديل المنتج بنجاح</value>
+  </data>
+  <data name="Product has no main image" xml:space="preserve">
+    <value>ليس هناك صورة رئيسية للمنتج</value>
+  </data>
+  <data name="Product image does not exist" xml:space="preserve">
+    <value>لم يتم العثور على صورة المنتج</value>
+  </data>
+  <data name="Product images" xml:space="preserve">
+    <value>صور المنتج</value>
+  </data>
+  <data name="Product main image edited successfully" xml:space="preserve">
+    <value>تم تعديل الصورة الرئيسية للمنتج</value>
+  </data>
+  <data name="Product main image not found" xml:space="preserve">
+    <value>لم يتم العثور على صورة المنتج</value>
+  </data>
+  <data name="Products" xml:space="preserve">
+    <value>المنتجات</value>
+  </data>
+  <data name="Products are already similar" xml:space="preserve">
+    <value>المنتجات بلاصل متشابهة</value>
+  </data>
+  <data name="Products are not similar" xml:space="preserve">
+    <value>المنتجات بلاصل متشابهة</value>
+  </data>
+  <data name="Products images settings updated" xml:space="preserve">
+    <value>تم تعديل إعدادات صور المنتج</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>الملف الشخصي</value>
+  </data>
+  <data name="Profile has been retrieved successfully" xml:space="preserve">
+    <value>تم جلب الملف الشخصي</value>
+  </data>
+  <data name="Profile has been updated successfully" xml:space="preserve">
+    <value>تم تعديل الملف الشخصي بنجاح</value>
+  </data>
+  <data name="Profile updated" xml:space="preserve">
+    <value>تم تعديل الملف الشخصي</value>
+  </data>
+  <data name="Public details" xml:space="preserve">
+    <value>التفاصيل العامة</value>
+  </data>
+  <data name="Public profile" xml:space="preserve">
+    <value>الملف الشخصي العام</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>الكمية</value>
+  </data>
+  <data name="Rar file is required" xml:space="preserve">
+    <value>ملف الرار اجباري</value>
+  </data>
+  <data name="Ready to create" xml:space="preserve">
+    <value>مستعد لانشاء</value>
+  </data>
+  <data name="Registration successful" xml:space="preserve">
+    <value>تم التسجيل بنجاح</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>حذف</value>
+  </data>
+  <data name="Report recepient email" xml:space="preserve">
+    <value>ايميل متلقي التقرير</value>
+  </data>
+  <data name="Resize" xml:space="preserve">
+    <value>تغيير الحجم</value>
+  </data>
+  <data name="Resize images" xml:space="preserve">
+    <value>تغيير احجام الصور</value>
+  </data>
+  <data name="Resizing about us images" xml:space="preserve">
+    <value>تغيير احجام صور قسم عنا</value>
+  </data>
+  <data name="Resizing about us images job started" xml:space="preserve">
+    <value>تم بدء عملية تغيير احجام صور قسم عنا</value>
+  </data>
+  <data name="Resizing categories images" xml:space="preserve">
+    <value>تغيير احجام صور الاصناف</value>
+  </data>
+  <data name="Resizing categories images job started" xml:space="preserve">
+    <value>تم بدء عملية تغيير احجام صور الاصناف</value>
+  </data>
+  <data name="Resizing compositions images" xml:space="preserve">
+    <value>تغيير احجام صور التجميعات</value>
+  </data>
+  <data name="Resizing compositions images job started" xml:space="preserve">
+    <value>تم بدء عملية تغيير احجام صور التجميعات</value>
+  </data>
+  <data name="Resizing product images" xml:space="preserve">
+    <value>تغيير احجام صور المنتجات</value>
+  </data>
+  <data name="Resizing products images job started" xml:space="preserve">
+    <value>تم بدء عملية تغيير احجام صور المنتجات</value>
+  </data>
+  <data name="Resizing slider images" xml:space="preserve">
+    <value>تغيير احجام صور السلايدر</value>
+  </data>
+  <data name="Resizing slider images job started" xml:space="preserve">
+    <value>تم بدء عملية تغيير احجام صور السلايدر</value>
+  </data>
+  <data name="Resource not found" xml:space="preserve">
+    <value>المورد غير موجود</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>الدور</value>
+  </data>
+  <data name="Save changes" xml:space="preserve">
+    <value>حفظ التغييرات</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>بحث</value>
+  </data>
+  <data name="Search for items" xml:space="preserve">
+    <value>ابحت عن قطع</value>
+  </data>
+  <data name="Search options" xml:space="preserve">
+    <value>خيارات البحث</value>
+  </data>
+  <data name="Security" xml:space="preserve">
+    <value>الحماية</value>
+  </data>
+  <data name="Select  a parent category" xml:space="preserve">
+    <value>اختار صنف أب</value>
+  </data>
+  <data name="Select a color" xml:space="preserve">
+    <value>اختار لون</value>
+  </data>
+  <data name="Select a sub category" xml:space="preserve">
+    <value>اختار صنف جزئي</value>
+  </data>
+  <data name="Select animation" xml:space="preserve">
+    <value>اختار نوع تحرك</value>
+  </data>
+  <data name="Select role" xml:space="preserve">
+    <value>اختار دور</value>
+  </data>
+  <data name="Select vendor" xml:space="preserve">
+    <value>اختار بائع</value>
+  </data>
+  <data name="Service 1 arabic text" xml:space="preserve">
+    <value>النص بلعربية للخدمة 1</value>
+  </data>
+  <data name="Service 1 arabic title" xml:space="preserve">
+    <value>العنوان بلعربية للخدمة 1</value>
+  </data>
+  <data name="Service 1 english text" xml:space="preserve">
+    <value>النص بلانكليزية للخدمة 1</value>
+  </data>
+  <data name="Service 1 english title" xml:space="preserve">
+    <value>العنوان بلانكليزية للخدمة 1</value>
+  </data>
+  <data name="Service 2 arabic text" xml:space="preserve">
+    <value>النص بلعربية للخدمة 2</value>
+  </data>
+  <data name="Service 2 arabic title" xml:space="preserve">
+    <value>العنوان بلعربية للخدمة 2</value>
+  </data>
+  <data name="Service 2 english text" xml:space="preserve">
+    <value>النص بلانكليزية للخدمة 2</value>
+  </data>
+  <data name="Service 2 english title" xml:space="preserve">
+    <value>العنوان بلانكليزية للخدمة 2</value>
+  </data>
+  <data name="Service is unavailable" xml:space="preserve">
+    <value>الخدمة غير متوفرة</value>
+  </data>
+  <data name="Services" xml:space="preserve">
+    <value>الخدمات</value>
+  </data>
+  <data name="Services section" xml:space="preserve">
+    <value>قسم الخدمات</value>
+  </data>
+  <data name="Services section updated" xml:space="preserve">
+    <value>تم تعديل قسم الخدمات</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>الإعدادات</value>
+  </data>
+  <data name="Should add watermark" xml:space="preserve">
+    <value>يجب اصافة علامة مائية</value>
+  </data>
+  <data name="Show vendor's products" xml:space="preserve">
+    <value>إظهار منتجات البائع</value>
+  </data>
+  <data name="Showing products" xml:space="preserve">
+    <value>الذين تظهر منتجاتهم</value>
+  </data>
+  <data name="Simliar items" xml:space="preserve">
+    <value>قطع مماثلة</value>
+  </data>
+  <data name="Slider image added" xml:space="preserve">
+    <value>تم اظافة صورة سلايدر</value>
+  </data>
+  <data name="Slider image deleted successfully" xml:space="preserve">
+    <value>تم حذف صورة السلايدر</value>
+  </data>
+  <data name="Slider image edited" xml:space="preserve">
+    <value>تم تعديل صورة السلايدر</value>
+  </data>
+  <data name="Slider image not found" xml:space="preserve">
+    <value>لم يتم العثور على صورة السلايدر</value>
+  </data>
+  <data name="Slider Images" xml:space="preserve">
+    <value>صور سلايدر</value>
+  </data>
+  <data name="Slider images settings updated" xml:space="preserve">
+    <value>تم تعديل اعدادت صور سلايدر</value>
+  </data>
+  <data name="Small image height" xml:space="preserve">
+    <value>إرتفاع الصورة الصغيرة</value>
+  </data>
+  <data name="Small image width" xml:space="preserve">
+    <value>عرض الصورة الصغيرة</value>
+  </data>
+  <data name="Some categories do not exist" xml:space="preserve">
+    <value>بعض الاصناف غير موجودة</value>
+  </data>
+  <data name="Some images have been deleted already" xml:space="preserve">
+    <value>بعض الصور تم حذفها بلأصل</value>
+  </data>
+  <data name="State not found" xml:space="preserve">
+    <value>لم يتم العثور على الحالة</value>
+  </data>
+  <data name="States" xml:space="preserve">
+    <value>الحالات</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="String2" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Sub category" xml:space="preserve">
+    <value>الصنف الجزئي</value>
+  </data>
+  <data name="Temp Images" xml:space="preserve">
+    <value>الصور المؤقتة</value>
+  </data>
+  <data name="Temp images background service sleep delay" xml:space="preserve">
+    <value>تأخير النوم الخدمة الخلفية للصور المؤقتة</value>
+  </data>
+  <data name="Temp images settings" xml:space="preserve">
+    <value>اعدادات الصور المؤقتة</value>
+  </data>
+  <data name="Temp images settings updated" xml:space="preserve">
+    <value>تم تعديل اعدادات الصور المؤقتة</value>
+  </data>
+  <data name="There are already products attached to category '{0}'" xml:space="preserve">
+    <value>يوجد بلاصل منتجات مرتبطة بلنص '{0}'</value>
+  </data>
+  <data name="This field is required" xml:space="preserve">
+    <value>هذا الحقل اجباري</value>
+  </data>
+  <data name="Thumbnail image height" xml:space="preserve">
+    <value>ارتفاع الصورة المصغرة</value>
+  </data>
+  <data name="Thumbnail image width" xml:space="preserve">
+    <value>عرض الصورة المصغرة</value>
+  </data>
+  <data name="Toggle" xml:space="preserve">
+    <value>تبديل</value>
+  </data>
+  <data name="Top vendors" xml:space="preserve">
+    <value>افضل البائعين</value>
+  </data>
+  <data name="Total museum value" xml:space="preserve">
+    <value>قيمة المتحف الاجمالية</value>
+  </data>
+  <data name="Unauthorized action" xml:space="preserve">
+    <value>فعل غير مصرح به</value>
+  </data>
+  <data name="Unchoosen categories" xml:space="preserve">
+    <value>الاصناف الغير مختارة</value>
+  </data>
+  <data name="Under category" xml:space="preserve">
+    <value>تحت الصنف</value>
+  </data>
+  <data name="Under sub category" xml:space="preserve">
+    <value>تحت الصنف الجزئي</value>
+  </data>
+  <data name="Unwatermark images" xml:space="preserve">
+    <value>ازالة العلامة المائية</value>
+  </data>
+  <data name="Unwatermark product" xml:space="preserve">
+    <value>إزالة العلامة المائية</value>
+  </data>
+  <data name="Unwatermarking job started" xml:space="preserve">
+    <value>تم بدء عملية عملية ازالة العلامة المائية</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>تعديل</value>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>رفع</value>
+  </data>
+  <data name="Upload image" xml:space="preserve">
+    <value>رفع صورة</value>
+  </data>
+  <data name="Url" xml:space="preserve">
+    <value>الرابط</value>
+  </data>
+  <data name="User added" xml:space="preserve">
+    <value>تم اضافة المستخدم</value>
+  </data>
+  <data name="User deleted successfully" xml:space="preserve">
+    <value>تم حذف المستخدم بنجاح</value>
+  </data>
+  <data name="User not found" xml:space="preserve">
+    <value>لم يتم العثور على المستخدم</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>المستخدمين</value>
+  </data>
+  <data name="Value should be a positive number" xml:space="preserve">
+    <value>القيمة يجب ان تكون موجبة</value>
+  </data>
+  <data name="Value should be between '{0}' and '{1}' percent" xml:space="preserve">
+    <value>القيمة يجب ان تكون بين {0} و {1} بلمية</value>
+  </data>
+  <data name="Value should be greater than {0}" xml:space="preserve">
+    <value>القيمة يجب ان تكون اكبر من {0}</value>
+  </data>
+  <data name="Value too long (max: {0})" xml:space="preserve">
+    <value>القيمة طويلة جدا (العليى: {0})</value>
+  </data>
+  <data name="Vendor" xml:space="preserve">
+    <value>البائع</value>
+  </data>
+  <data name="Vendor added successfully" xml:space="preserve">
+    <value>تم اضافة البائع بنجاح</value>
+  </data>
+  <data name="Vendor address" xml:space="preserve">
+    <value>عنوان البائع</value>
+  </data>
+  <data name="Vendor deleted successfully" xml:space="preserve">
+    <value>تم حذف البائع بنجاح</value>
+  </data>
+  <data name="Vendor details" xml:space="preserve">
+    <value>تفاصيل البائع</value>
+  </data>
+  <data name="Vendor does not exist" xml:space="preserve">
+    <value>لم يتم العثور على البائع</value>
+  </data>
+  <data name="Vendor edited successfully" xml:space="preserve">
+    <value>تم تعديل البائع بنجاح</value>
+  </data>
+  <data name="Vendor with same name already exists" xml:space="preserve">
+    <value>يوجد بائع بنفس الاسم</value>
+  </data>
+  <data name="Vendors" xml:space="preserve">
+    <value>البائعون</value>
+  </data>
+  <data name="Vendors showing products" xml:space="preserve">
+    <value>البائعون الذين تظهر منتجاتهم</value>
+  </data>
+  <data name="Via rar file" xml:space="preserve">
+    <value>من خلال ملف رار</value>
+  </data>
+  <data name="Visible" xml:space="preserve">
+    <value>الظهور</value>
+  </data>
+  <data name="Visit us" xml:space="preserve">
+    <value>زورنا</value>
+  </data>
+  <data name="Watermark" xml:space="preserve">
+    <value>العلامة المائية</value>
+  </data>
+  <data name="Watermark images" xml:space="preserve">
+    <value>أضف علامة مائية للصور</value>
+  </data>
+  <data name="Watermark product" xml:space="preserve">
+    <value>إضاقة علامة مائية للمنتج</value>
+  </data>
+  <data name="Watermark settings" xml:space="preserve">
+    <value>اغدادات العلامة المائية</value>
+  </data>
+  <data name="Watermark settings updated" xml:space="preserve">
+    <value>تم تعديل اغدادات العلامة المائية</value>
+  </data>
+  <data name="Watermarking" xml:space="preserve">
+    <value>اضافة علامة مائية</value>
+  </data>
+  <data name="Watermarking job started" xml:space="preserve">
+    <value>تم بدء عملية اضافة علامة مائية</value>
+  </data>
+  <data name="Watermarking requires an image" xml:space="preserve">
+    <value>تتطلب العلامة المائية صورة</value>
+  </data>
+  <data name="Weight" xml:space="preserve">
+    <value>الوزن</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>أهلا</value>
+  </data>
+  <data name="Width" xml:space="preserve">
+    <value>العرض</value>
+  </data>
+  <data name="Working on products right now" xml:space="preserve">
+    <value>يتم العمل على المنتجات حاليا</value>
+  </data>
+  <data name="your dream house ?" xml:space="preserve">
+    <value>بيت احلامك ؟</value>
+  </data>
+  <data name="Your profile" xml:space="preserve">
+    <value>ملفك الشخصي</value>
+  </data>
+</root>

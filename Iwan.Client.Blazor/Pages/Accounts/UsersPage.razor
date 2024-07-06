@@ -1,0 +1,69 @@
+﻿@page "/admin/users"
+@attribute [Authorize(Roles = $"{Roles.Admin}, { Roles.SuperAdmin }")]
+@using Iwan.Shared.Dtos.Accounts
+
+<MudText Typo="Typo.h5" Color="Color.Primary" Class="mb-4">@Localize(LocalizeKeys.Users)</MudText>
+<MudCard Style="padding: 2rem">
+    <MudCardHeader>
+        <CardHeaderActions>
+            @if (user?.IsInRole(Roles.SuperAdmin) ?? false)
+            {
+                <MudButton Color="Color.Primary" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Add" OnClick="() => NavigationManager.NavigateTo(AppPages.AddUser)">
+                    @Localize(LocalizeKeys.Add)
+                </MudButton>
+            }
+        </CardHeaderActions>
+        <CardHeaderContent>
+            <MudText Class="mb-5" Align="Align.Left" Color="Color.Dark" Typo="Typo.h5" GutterBottom="true">@Localize(LocalizeKeys.SearchOptions)</MudText>
+            <MudDivider Light="false" DividerType="DividerType.Inset" Class="mb-5"></MudDivider>
+            <MudGrid>
+                <MudItem xs="12" sm="12" md="6">
+                    <MudText Align="Align.Left" Color="Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.Name)</MudText>
+                    <MudTextField @bind-Value="options.Name" For="() => options.Name" Clearable="true" Placeholder="@Localize(LocalizeKeys.Name)"></MudTextField>
+                </MudItem>
+                <MudItem xs="12" sm="12" md="6">
+                    <MudText Align="Align.Left" Color="Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.Email)</MudText>
+                    <MudTextField @bind-Value="options.Email" For="() => options.Email" Clearable="true" Placeholder="@Localize(LocalizeKeys.Email)"></MudTextField>
+                </MudItem>
+                <MudItem xs="12" sm="12" md="12" lg="12">
+                    <MudButton Color="Color.Primary" FullWidth="true" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Search" OnClick="ReloadDataAsync">
+                        @Localize(LocalizeKeys.Search)
+                    </MudButton>
+                </MudItem>
+            </MudGrid>
+        </CardHeaderContent>
+    </MudCardHeader>
+
+
+    <MudTable Class="mt-3" ServerData="@(new Func<TableState, Task<TableData<UserDto>>>(SearchData))"
+              Dense="true" Hover="true" @ref="table">
+        <HeaderContent>
+
+            <MudTh><MudText Align="Align.Center">@Localize(LocalizeKeys.Name)</MudText></MudTh>
+            <MudTh><MudText Align="Align.Center">@Localize(LocalizeKeys.Email)</MudText></MudTh>
+            <MudTh><MudText Align="Align.Center">@Localize(LocalizeKeys.Actions)</MudText></MudTh>
+        </HeaderContent>
+        <RowTemplate Context="user">
+            <MudTd><MudText Align="Align.Center">@user.Name</MudText></MudTd>
+            <MudTd Class="text-center"><MudText Align="Align.Center">@user.Email</MudText></MudTd>
+            <MudTd>
+                <MudText Align="Align.Center">
+                    @if (user.CanDelete)
+                    {
+                        <MudIconButton Disabled="busy" Color="Color.Error" Icon="@Icons.Material.Filled.Delete"
+                                   OnClick="() => DeleteUserAsync(user.Id)"></MudIconButton>
+                    }
+                </MudText>
+            </MudTd>
+        </RowTemplate>
+        <NoRecordsContent>
+            <MudText Align="Align.Center">@Localize(LocalizeKeys.NoRecordsFound)</MudText>
+        </NoRecordsContent>
+        <LoadingContent>
+            <MudText Align="Align.Center">@(Localize(LocalizeKeys.Loading))...</MudText>
+        </LoadingContent>
+        <PagerContent>
+            <MudTablePager />
+        </PagerContent>
+    </MudTable>
+</MudCard>

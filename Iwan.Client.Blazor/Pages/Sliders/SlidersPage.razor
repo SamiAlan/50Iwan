@@ -1,0 +1,46 @@
+﻿@page "/admin/sliderimages"
+@using Iwan.Shared.Dtos.Sliders
+@attribute [Authorize(Roles = $"{Roles.Admin}, { Roles.SuperAdmin }")]
+
+<MudText Typo="Typo.h5" Color="Color.Primary" Class="mb-4">@Localize(LocalizeKeys.SliderImages)</MudText>
+<MudCard Style="padding: 2rem">
+    <MudCardHeader>
+        <CardHeaderActions>
+            <MudButton Color="Color.Primary" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Add" OnClick="AddSliderImage">
+                @Localize(LocalizeKeys.Add)
+            </MudButton>
+        </CardHeaderActions>
+    </MudCardHeader>
+
+
+    <MudTable Class="mt-3" ServerData="@(new Func<TableState, Task<TableData<SliderImageDto>>>(SearchData))"
+              Dense="true" Hover="true" @ref="table">
+        <HeaderContent>
+
+            <MudTh><MudText Align="Align.Center">@Localize(LocalizeKeys.Image)</MudText></MudTh>
+            <MudTh><MudText Align="Align.Center">@Localize(LocalizeKeys.Order)</MudText></MudTh>
+            <MudTh><MudText Align="Align.Center">@Localize(LocalizeKeys.Actions)</MudText></MudTh>
+        </HeaderContent>
+        <RowTemplate Context="sliderImage">
+            <MudTd><MudText Align="Align.Center"><img src="@sliderImage.MobileImage.Url" alt="slider image" width="200" height="200" /></MudText></MudTd>
+            <MudTd><MudText Align="Align.Center">@sliderImage.Order</MudText></MudTd>
+            <MudTd>
+                <MudText Align="Align.Center">
+                    <MudIconButton Disabled="busy" Color="Color.Warning" Icon="@Icons.Material.Filled.Edit"
+                                   OnClick="() => EditSliderImageAsync(sliderImage.Id)"></MudIconButton>
+                    <MudIconButton Disabled="busy" Color="Color.Error" Icon="@Icons.Material.Filled.Delete"
+                                   OnClick="() => DeleteSliderImage(sliderImage.Id)"></MudIconButton>
+                </MudText>
+            </MudTd>
+        </RowTemplate>
+        <NoRecordsContent>
+            <MudText Align="Align.Center">@Localize(LocalizeKeys.NoRecordsFound)</MudText>
+        </NoRecordsContent>
+        <LoadingContent>
+            <MudText Align="Align.Center">@(Localize(LocalizeKeys.Loading))...</MudText>
+        </LoadingContent>
+        <PagerContent>
+            <MudTablePager />
+        </PagerContent>
+    </MudTable>
+</MudCard>

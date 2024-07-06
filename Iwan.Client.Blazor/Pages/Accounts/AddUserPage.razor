@@ -1,0 +1,53 @@
+﻿@page "/admin/users/add"
+@attribute [Authorize(Roles = $"{Roles.Admin}, { Roles.SuperAdmin }")]
+
+<MudContainer MaxWidth="MaxWidth.False">
+    <MudButton Variant="Variant.Text" Color="Color.Secondary" IconColor="Color.Secondary" StartIcon="@Icons.Outlined.ArrowLeft" OnClick="GoToUsersPage">
+        @Localize(LocalizeKeys.Back)
+    </MudButton>
+    <EditForm Model="user" OnValidSubmit="AddUserAsync">
+        <FluentValidationValidator Validator="_userValidator" DisableAssemblyScanning="true" />
+        <ServerValidation @ref="_serverValidator" />
+
+        <MudCard Class="p-3">
+            <MudCardHeader>
+                <CardHeaderContent>
+                    <MudText Align="Align.Center" Typo="Typo.h4">@Localize(LocalizeKeys.AddNewUser)</MudText>
+                </CardHeaderContent>
+            </MudCardHeader>
+            <MudCardContent>
+                <MudTextField @bind-Value="user.Name" For="() => user.Name" Label="@Localize(LocalizeKeys.Name)"
+                              Class="mb-5" Variant="Variant.Outlined" />
+
+                <MudTextField @bind-Value="user.Email" For="() => user.Email" Label="@Localize(LocalizeKeys.Email)"
+                              Class="mb-5" Variant="Variant.Outlined" />
+
+                <MudTextField @bind-Value="user.Password" InputType="InputType.Password" For="() => user.Password" Label="@Localize(LocalizeKeys.Password)"
+                              Class="mb-5" Variant="Variant.Outlined" />
+
+                <MudSelect Class="mb-5" T="string" @bind-Value="user.Role" Label="@Localize(LocalizeKeys.Role)"
+                           Placeholder="@Localize(LocalizeKeys.SelectRole)" Items AnchorOrigin="Origin.BottomCenter"
+                           For="() => user.Role" Variant="Variant.Outlined">
+                    @foreach (var role in Roles.All())
+                    {
+                        <MudSelectItem Value="@role">@role</MudSelectItem>
+                    }
+                </MudSelect>
+
+            </MudCardContent>
+            <MudCardActions>
+                <MudButton Variant="Variant.Filled" Color="Color.Primary" Disabled="@busy" ButtonType="ButtonType.Submit"
+                           Class="ml-auto">
+                    @if (busy)
+                    {
+                        <MudProgressCircular Indeterminate="true" Color="Color.Primary" Size="Size.Medium"></MudProgressCircular>
+                    }
+                    else
+                    {
+                        @Localize(LocalizeKeys.Add)
+                    }
+                </MudButton>
+            </MudCardActions>
+        </MudCard>
+    </EditForm>
+</MudContainer>

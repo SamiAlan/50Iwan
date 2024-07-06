@@ -1,0 +1,33 @@
+﻿<MudGrid>
+    <MudItem>
+        <MudText Typo="Typo.subtitle1">@Localize(LocalizeKeys.MainImage)</MudText>
+        @if (tempMainImageFromInteriorImage != null)
+        {
+            <TempImageUploader CanUploadAfterUploaded="true" CanDeleteAfterUploaded="false"
+                           UploadedTempImage="tempMainImageFromInteriorImage" TValidationFor="object" TempImageUploaded="ChangeMainImageAsync">
+            </TempImageUploader>
+        }
+        else
+        {
+            <TempImageUploader CanUploadAfterUploaded="false" ResetAfterUpload="true" TValidationFor="object"
+                           TempImageUploaded="ChangeMainImageAsync">
+            </TempImageUploader>
+        }
+    </MudItem>
+
+    <MudItem>
+        <MudText Typo="Typo.subtitle1">@Localize(LocalizeKeys.MobileImage)</MudText>
+        @if (tempMobileImageFromInteriorImage != null)
+        {
+            <TempImageUploader CanUploadAfterUploaded="true" CanDeleteAfterUploaded="false"
+                           UploadedTempImage="tempMobileImageFromInteriorImage" TValidationFor="object" TempImageUploaded="ChangeMobileImageAsync">
+            </TempImageUploader>
+        }
+        else
+        {
+            <TempImageUploader CanUploadAfterUploaded="false" ResetAfterUpload="true" TValidationFor="object"
+                           TempImageUploaded="ChangeMobileImageAsync">
+            </TempImageUploader>
+        }
+    </MudItem>
+</MudGrid>

@@ -1,0 +1,256 @@
+﻿@inject IStringLocalizer<Localization> localizer
+
+<!DOCTYPE html>
+<html lang="@(ViewBag.IsCultureArabic ? "ar" : "en")" dir="@(ViewBag.IsCultureArabic ? "rtl" : "ltr")">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="imagetoolbar" content="no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="/assets/fonts/google-fonts.css" rel="stylesheet">
+    <link href="/assets/fonts/custom/finlandica/finlandica.fonts.css" rel="stylesheet">
+    <link href="/assets/fonts/custom/octine-vintage/octine-vintage.fonts.css" rel="stylesheet">
+    @if (ViewBag.IsCultureArabic)
+    {
+        <link rel="stylesheet" href="/assets/css/bootstrap/bootstrap.rtl.min.css">
+    }
+    else
+    {
+        <link rel="stylesheet" href="/assets/css/bootstrap/bootstrap.min.css">
+
+    }
+    <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css" />
+
+    <link rel="stylesheet" href="/assets/css/swiper.min.css">
+    <link rel="stylesheet" href="/assets/css/easyzoom.css">
+    <link rel="stylesheet" href="/assets/css/style.css" asp-append-version="true">
+    @if (ViewBag.IsCultureArabic)
+    {
+        <link rel="stylesheet" href="/assets/css/ar.css">
+    }
+    @{
+        var finlandica = "Finlandica Medium Italic";
+        var chamberi = "Chamberi";
+        var gothic = "Century Gothic";
+
+        var chamberiOrFinlandica = ViewBag.IsCultureArabic ? finlandica : chamberi;
+        var gothicOrFinlandica = ViewBag.IsCultureArabic ? finlandica : gothic;
+    }
+    <style type="text/css">
+        * {
+            font-family: "@(gothicOrFinlandica)"
+        }
+
+        .main-head h1 {
+            font-family: "@(chamberiOrFinlandica)"
+        }
+
+        .navbar .navbar-nav .nav-item a {
+            font-family: "@(gothicOrFinlandica)"
+        }
+
+        .hero .hero-text h1 {
+            font-family: "@(chamberiOrFinlandica)"
+        }
+
+        .hero .hero-text p {
+            font-family: "@(gothicOrFinlandica)"
+        }
+
+        .hero .hero-text .items-number h3 {
+            font-family: "@(gothicOrFinlandica)"
+        }
+
+        .hero .hero-text .items-number h4 {
+            font-family: "@(gothicOrFinlandica)"
+        }
+
+        .categories .category-card h3 {
+            font-family: "@(gothicOrFinlandica)"
+        }
+
+        .categories .banner .text-section h1 {
+            font-family: "@(finlandica)"
+        }
+
+        .categories .banner .text-section h2 {
+            font-family: "@(finlandica)"
+        }
+
+        .services .wrapper h3 {
+            font-family: "@(finlandica)"
+        }
+
+        .services .wrapper p {
+            font-family: "@(finlandica)"
+        }
+
+        .about .text p {
+            font-family: "@(finlandica)"
+        }
+
+        .contact .contact-info .info-container p {
+            font-family: "@(gothicOrFinlandica)"
+        }
+
+        .sub-head .head h1 {
+            font-family: "@(chamberiOrFinlandica)"
+        }
+
+        .products .product-card h3 {
+            font-family: "@(gothicOrFinlandica)"
+        }
+
+        .item-coutner span {
+            font-family: "@(gothicOrFinlandica)"
+        }
+
+        .product-details .details-section h4 {
+            font-family: "@(gothicOrFinlandica)"
+        }
+
+        .product-details .details-section p {
+            font-family: "@(gothicOrFinlandica)"
+        }
+
+        .product-details .details-section .item-details p span {
+            font-family: "@(gothicOrFinlandica)"
+        }
+
+        .product-details .accordion .accordion-header .accordion-button {
+            font-family: "@(gothicOrFinlandica)"
+        }
+
+        .similar p {
+            font-family: "@(gothicOrFinlandica)"
+        }
+    </style>
+    <title>Iwan - @ViewData["Title"]</title>
+</head>
+
+<body style="@ViewData["body_style"]" data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="90" oncontextmenu="return false;" onselectstart="return false">
+    <!-- Navbar Start  -->
+    <nav id="navbar_top" class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <!-- logo -->
+            <a class="navbar-brand" href="/@(ViewBag.IsCultureArabic ? "ar-SA" : "en-US")"><img src="/assets/images/logo/logo-vertical-2.svg" width="65" height="65" /></a>
+            <div class="d-lg-none">
+                <form class="d-flex" action="/@(ViewBag.IsCultureArabic ? "ar-SA" : "en-US")/product/search" method="get">
+                    <div class="input-with-image">
+                        <input class="form-control me-2" style="color: white" name="text" type="search" placeholder="@localizer.Localize(LocalizeKeys.SearchForItems)" aria-label="Search">
+                        <img src="/assets/images/icons/search.svg" alt="">
+                    </div>
+                </form>
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+                    @{
+                        var template = "/" + (ViewBag.IsCultureArabic ? "ar-SA" : "en-US") + "?section={0}";
+                    }
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/@(ViewBag.IsCultureArabic ? "ar-SA" : "en-US")">@localizer.Localize(LocalizeKeys.Home)</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@(!ViewBag.IsHomePage ? string.Format(template, "categories") : "#categories")">@localizer.Localize(LocalizeKeys.Categories)</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@(!ViewBag.IsHomePage ? string.Format(template, "services") : "#services")">@localizer.Localize(LocalizeKeys.Services)</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@(!ViewBag.IsHomePage ? string.Format(template, "about") : "#about")">@localizer.Localize(LocalizeKeys.AboutUs)</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@(!ViewBag.IsHomePage ? string.Format(template, "contact") : "#contact")">@localizer.Localize(LocalizeKeys.ContactUs)</a>
+                    </li>
+                    @if (User.IsInRole(Roles.Admin) || User.IsInRole(Roles.SuperAdmin))
+                    {
+                        <li class="nav-item d-flex lang">
+                            <a class="nav-link" href="/admin">Admin</a>
+                        </li>
+                    }
+
+                    <li class="nav-item d-flex lang">
+                        <a class="nav-link @(ViewBag.IsCultureArabic ? "" : "active-lang")" href="/en-US">EN</a>
+                        <a class="nav-link @(ViewBag.IsCultureArabic ? "active-lang" : "")" href="/ar-SA">AR</a>
+                    </li>
+                </ul>
+                <div class="d-none d-lg-block">
+                    <form class="d-flex" action="/@(ViewBag.IsCultureArabic ? "ar-SA" : "en-US")/product/search" method="get">
+                        <div class="input-with-image">
+                            <input class="form-control me-2" style="color: white" name="text" type="search" placeholder="@localizer.Localize(LocalizeKeys.SearchForItems)" aria-label="Search">
+                            <img src="/assets/images/icons/search.svg" alt="">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+    @RenderBody()
+
+    <!-- footer start  -->
+    <footer>
+        <span> © 2021 copyright</span>
+    </footer>
+    <!-- footer end  -->
+
+    <script src="/assets/js/jquery-3.4.1.min.js"></script>
+    <script src="/assets/js/swiper-bundle.min.js"></script>
+
+    <script src="/assets/js/swiper.min.js"></script>
+    <script src="/assets/js/popper.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/easyzoom.js"></script>
+    <script src="/assets/js/app.js" asp-append-version="true"></script>
+    <script>
+        document.addEventListener("keyup", function (e) {
+            disableCopy(e);
+            var keyCode = e.keyCode ? e.keyCode : e.which;
+            if (keyCode == 'PrintScreen') {
+                stopPrntScr();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.key == 'p') {
+                alert('This section is not allowed to print or export to PDF');
+                e.cancelBubble = true;
+                e.preventDefault();
+                e.stopImmediatePropagation();
+            }
+        });
+
+        function stopPrntScr() {
+            var inpFld = document.createElement("input");
+            inpFld.setAttribute("value", ".");
+            inpFld.setAttribute("width", "0");
+            inpFld.style.height = "0px";
+            inpFld.style.width = "0px";
+            inpFld.style.border = "0px";
+            document.body.appendChild(inpFld);
+            inpFld.select();
+            document.execCommand("copy");
+            inpFld.remove(inpFld);
+        }
+
+        function disableCopy(e) {
+            // current pressed key
+            if (e.ctrlKey) {
+                // disable key press porcessing
+                e.returnValue = false;
+            }
+        }
+    </script>
+
+    @RenderSection("Scripts", false)
+
+</body>
+
+</html>

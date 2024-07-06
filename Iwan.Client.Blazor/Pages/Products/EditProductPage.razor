@@ -1,0 +1,116 @@
+﻿@page "/admin/products/{id}/edit"
+@attribute [Authorize(Roles = $"{Roles.Admin}, { Roles.SuperAdmin }")]
+
+<MudContainer MaxWidth="MaxWidth.False">
+    <MudButton Variant="Variant.Text" Color="Color.Secondary" IconColor="Color.Secondary"
+               StartIcon="@Icons.Outlined.ArrowLeft" OnClick="GoToProductsPage">
+        @Localize(LocalizeKeys.Back)
+    </MudButton>
+    <EditForm Model="product" OnValidSubmit="EditProductAsync">
+        <FluentValidationValidator Validator="_validator" DisableAssemblyScanning="true" />
+        <ServerValidation @ref="_serverValidator" />
+
+        <MudCard Class="p-3">
+            <MudCardHeader>
+                <CardHeaderContent>
+                    <MudText Align="Align.Center" Typo="Typo.h4">@Localize(LocalizeKeys.EditProduct)</MudText>
+                </CardHeaderContent>
+            </MudCardHeader>
+            <MudCardContent>
+                <MudGrid>
+                    <MudItem xs="12" sm="12" md="6">
+
+                        <MudText Align="Align.Left" Color="Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.Number)</MudText>
+                        <MudNumericField Class="mb-5" @bind-Value="product.Number" For="() => product.Number" Variant="Variant.Outlined"></MudNumericField>
+
+                        <MudText Align="Align.Left" Color="Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.ArabicName)</MudText>
+                        <MudTextField Class="mb-5" @bind-Value="product.ArabicName" For="() => product.ArabicName" Variant="Variant.Outlined"></MudTextField>
+
+                        <MudText Align="Align.Left" Color="Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.EnglishName)</MudText>
+                        <MudTextField Class="mb-5" @bind-Value="product.EnglishName" For="() => product.EnglishName" Variant="Variant.Outlined"></MudTextField>
+
+                        <MudText Align="Align.Left" Color="Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.ArabicDescription)</MudText>
+                        <MudTextField Class="mb-5" @bind-Value="product.ArabicDescription" For="() => product.ArabicDescription" Variant="Variant.Outlined" Lines="5"></MudTextField>
+
+                        <MudText Align="Align.Left" Color="Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.EnglishDescription)</MudText>
+                        <MudTextField Class="mb-5" @bind-Value="product.EnglishDescription" For="() => product.EnglishDescription" Variant="Variant.Outlined" Lines="5"></MudTextField>
+
+                        <MudText Align="Align.Left" Color="Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.MakerArabicName)</MudText>
+                        <MudTextField Class="mb-5" @bind-Value="product.MakerArabicName" For="() => product.MakerArabicName" Variant="Variant.Outlined"></MudTextField>
+
+                        <MudText Align="Align.Left" Color="Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.MakerEnglishName)</MudText>
+                        <MudTextField Class="mb-5" @bind-Value="product.MakerEnglishName" For="() => product.MakerEnglishName" Variant="Variant.Outlined"></MudTextField>
+
+                        <MudText Align="Align.Left" Color="Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.Age)</MudText>
+                        <MudNumericField Class="mb-5" @bind-Value="product.Age" For="() => product.Age" Variant="Variant.Outlined"></MudNumericField>
+
+                    </MudItem>
+
+                    <MudItem xs="12" sm="12" md="6">
+                        <MudText Align="Align.Left" Color="Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.Price)</MudText>
+                        <MudNumericField Culture="new System.Globalization.CultureInfo(AppLanguages.English.Culture)" Class="mb-5" @bind-Value="product.Price" For="() => product.Price" Variant="Variant.Outlined"></MudNumericField>
+
+                        <MudText Align="Align.Left" Color="Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.Quantity)</MudText>
+                        <MudNumericField Label="@Localize(LocalizeKeys.Quantity)" Class="mb-5" @bind-Value="product.StockQuantity" For="() => product.StockQuantity" Variant="Variant.Outlined"></MudNumericField>
+
+                        <MudText Align="Align.Left" Color="Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.DimensionsInArabic)</MudText>
+                        <MudTextField Label="@Localize(LocalizeKeys.DimensionsInArabic)" Class="mb-5" @bind-Value="product.DimensionsInArabic" For="() => product.DimensionsInArabic" Variant="Variant.Outlined" Lines="5"></MudTextField>
+
+                        <MudText Align="Align.Left" Color="Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.DimensionsInEnglish)</MudText>
+                        <MudTextField Label="@Localize(LocalizeKeys.DimensionsInEnglish)" Class="mb-5" @bind-Value="product.DimensionsInEnglish" For="() => product.DimensionsInEnglish" Variant="Variant.Outlined" Lines="5"></MudTextField>
+
+                        <MudSwitch @bind-Checked="product.IsVisible" Label="@Localize(LocalizeKeys.IsVisible)"
+                                   Color="Color.Success" Class="mb-5" />
+                        <ValidationMessage For="() => product.IsVisible" style="color: red"></ValidationMessage>
+
+                        <MudText Align="Align.Left" Color="Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.BackgroundColor)</MudText>
+
+                        <MudSelect Class="mb-5" T="int" @bind-Value="product.ColorTypeId" Items AnchorOrigin="Origin.BottomCenter"
+                                   For="() => product.ColorTypeId" Variant="Variant.Outlined">
+                            @foreach (var type in Enum.GetValues<ColorType>())
+                            {
+                                <MudSelectItem Value="@((int)type)">@Localize(type.ToString())</MudSelectItem>
+                            }
+                        </MudSelect>
+
+                        @if (product.ColorType == ColorType.Custom)
+                        {
+                            <MudText Align="Align.Left" Color="Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.BackgroundColor)</MudText>
+
+                            <MudColorPicker Class="mb-5" @bind-Text="product.ColorCode" Style="@($"color: {product.ColorCode};")"
+                                        Placeholder="@Localize(LocalizeKeys.SelectColor)" ColorPickerView="ColorPickerView.Spectrum"
+                                        Variant="Variant.Outlined" />
+                            <ValidationMessage For="() => product.ColorCode" />
+                        }
+
+                        <MudText Align="Align.Left" Color="Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.Vendor)</MudText>
+
+                        <MudSelect Class="mb-5" T="string" @bind-Value="product.VendorId"
+                                   Variant="Variant.Outlined" Placeholder="@Localize(LocalizeKeys.SelectVendor)"
+                                   AnchorOrigin="Origin.BottomCenter" For="() => product.VendorId">
+                            <MudSelectItem T="string">@Localize(LocalizeKeys.None)</MudSelectItem>
+                            @foreach (var vendor in _vendors)
+                            {
+                                <MudSelectItem T="string" Value="@vendor.Id">@vendor.Name</MudSelectItem>
+                            }
+                        </MudSelect>
+                    </MudItem>
+                </MudGrid>
+            </MudCardContent>
+            <MudCardActions>
+                <MudButton Variant="Variant.Filled" Color="Color.Primary" Disabled="@busy"
+                           ButtonType="ButtonType.Submit" Class="ml-auto mb-5">
+                    @if (busy)
+                    {
+                        <MudProgressCircular Indeterminate="true" Color="Color.Primary" Size="Size.Medium">
+                        </MudProgressCircular>
+                    }
+                    else
+                    {
+                        @Localize(LocalizeKeys.Edit)
+                    }
+                </MudButton>
+            </MudCardActions>
+        </MudCard>
+    </EditForm>
+</MudContainer>

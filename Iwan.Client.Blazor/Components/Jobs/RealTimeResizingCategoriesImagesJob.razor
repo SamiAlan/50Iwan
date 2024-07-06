@@ -1,0 +1,24 @@
+﻿@if (_shouldShowProgress)
+{
+    <MudPaper Class="pa-16 ma-2" Elevation="3">
+        <MudText Typo="Typo.h4" Class="mb-5">@Localize(LocalizeKeys.ResizingCategoriesImages)</MudText>
+        <MudGrid>
+            <MudItem sm="2">
+                @if (_status == JobStatus.Pending)
+                {
+                    <MudText Typo="Typo.subtitle1" Color="Color.Warning">@Localize(_status.ToString())</MudText>
+                }
+                else if (_status == JobStatus.Processing)
+                {
+                    <MudText Typo="Typo.subtitle1" Color="Color.Primary">@Localize(_status.ToString())</MudText>
+                }
+            </MudItem>
+            <MudItem sm="10">
+                @if (_status == JobStatus.Processing)
+                {
+                    <MudProgressLinear Color="Color.Success" Max="_totalEntities" Value="@(_entitiesDone)" />
+                }
+            </MudItem>
+        </MudGrid>
+    </MudPaper>
+}

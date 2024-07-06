@@ -1,0 +1,34 @@
+﻿<MudPaper Class="pa-16 ma-2" Elevation="3">
+    <!-- Colors section -->
+    <MudText Typo="Typo.h4" Class="my-5">@Localize(LocalizeKeys.ColorsSection)</MudText>
+        @if (Colors?.Any() ?? false)
+        {
+            foreach (var color in Colors)
+            {
+                <Color ColorDto="color" OnColorDeleted="ColorDeleted" />
+            }
+        }
+
+    <!-- Adding color section -->
+    <EditForm Model="color" OnValidSubmit="AddColorAsync" class="mt-5">
+        <FluentValidationValidator Validator="_validator" />
+
+        <MudColorPicker Class="mb-5" @bind-Text="color.ColorCode" Style="@($"color: {color.ColorCode};")"
+                        Placeholder="@Localize(LocalizeKeys.SelectColor)" Label="@Localize(LocalizeKeys.Color)"
+                        ColorPickerView="ColorPickerView.Spectrum" Variant="Variant.Outlined" />
+        <ValidationMessage For="() => color.ColorCode" />
+
+        <MudButton Variant="Variant.Filled" Color="MudBlazor.Color.Primary" Disabled="@_busy"
+                   ButtonType="ButtonType.Submit" Class="ml-auto">
+            @if (_busy)
+            {
+                <MudProgressCircular Indeterminate="true" Color="MudBlazor.Color.Primary" Size="Size.Medium">
+                </MudProgressCircular>
+            }
+            else
+            {
+                @Localize(LocalizeKeys.Add)
+            }
+        </MudButton>
+    </EditForm>
+</MudPaper>

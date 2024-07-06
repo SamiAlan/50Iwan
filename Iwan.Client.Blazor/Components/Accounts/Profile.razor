@@ -1,0 +1,51 @@
+﻿<MudGrid>
+    <MudItem xs="12" sm="4" md="3">
+        <MudCard>
+            <MudCardHeader>
+                <CardHeaderContent>
+                    <MudText>@Localize(LocalizeKeys.PublicProfile)</MudText>
+                </CardHeaderContent>
+            </MudCardHeader>
+            <MudCardContent>
+                <div class="d-flex justify-center mb-4">
+                    <MudAvatar Image="images/user-avatar.jpg" Style="height:100px; width:100px;" />
+                </div>
+                <MudText Align="Align.Center">@_profile.Name</MudText>
+            </MudCardContent>
+        </MudCard>
+    </MudItem>
+    <MudItem xs="12" sm="8" md="9">
+        <MudCard>
+            <EditForm Model="_profile" OnValidSubmit="UpdateProfileAsync">
+                <FluentValidationValidator Validator="_profileValidator" />
+                <ServerValidation @ref="_serverValidator" />
+                <MudCardHeader>
+                    <CardHeaderContent>
+                        <MudText>@Localize(LocalizeKeys.ProfileDetails)</MudText>
+                    </CardHeaderContent>
+                </MudCardHeader>
+                <MudCardContent>
+                    <MudGrid>
+                        <MudItem xs="12" md="6">
+                            <MudTextField @bind-Value="_profile.Name" Label="@Localize(LocalizeKeys.Name)"
+                                          For="() =>_profile.Name" Variant="Variant.Outlined"/>
+                        </MudItem>
+                    </MudGrid>
+                </MudCardContent>
+                <MudCardActions Class="pb-4 pl-4">
+                    <MudButton Variant="Variant.Filled" Color="Color.Primary" Disabled="@_busy"
+                               ButtonType="ButtonType.Submit" Class="ml-auto">
+                        @if (_busy)
+                        {
+                            <MudProgressCircular Indeterminate="true" Color="Color.Primary" Size="Size.Medium" />
+                        }
+                        else
+                        {
+                            @Localize(LocalizeKeys.SaveChanges)
+                        }
+                    </MudButton>
+                </MudCardActions>
+            </EditForm>
+        </MudCard>
+    </MudItem>
+</MudGrid>

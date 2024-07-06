@@ -1,0 +1,39 @@
+﻿@font-face {
+    font-family: 'Finlandica Bold';
+    src: url("Finlandica-Bold.ttf");
+}
+
+@font-face {
+    font-family: 'Finlandica Bold Italic';
+    src: url("Finlandica-BoldItalic.ttf");
+}
+
+@font-face {
+    font-family: 'Finlandica Italic';
+    src: url("Finlandica-Italic.ttf");
+}
+
+@font-face {
+    font-family: 'Finlandica Medium';
+    src: url("Finlandica-Medium.ttf");
+}
+
+@font-face {
+    font-family: 'Finlandica Medium Italic';
+    src: url("Finlandica-MediumItalic.ttf");
+}
+
+@font-face {
+    font-family: 'Finlandica Regular';
+    src: url("Finlandica-Regular.ttf");
+}
+
+@font-face {
+    font-family: 'Finlandica Semi Bold';
+    src: url("Finlandica-SemiBold.ttf");
+}
+
+@font-face {
+    font-family: 'Finlandica Semi Bold Italic';
+    src: url("Finlandica-SemiBoldItalic.ttf");
+}

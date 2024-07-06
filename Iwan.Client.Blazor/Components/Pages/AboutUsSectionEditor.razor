@@ -1,0 +1,37 @@
+﻿<MudPaper Class="pa-16 ma-2" Elevation="3">
+    <MudText Typo="Typo.h5" Class="mb-5">@Localize(LocalizeKeys.AboutUsSection)</MudText>
+    <EditForm Model="_aboutUsSection" OnValidSubmit="UpdateSectionAsync">
+        <ServerValidation @ref="_serverValidator"></ServerValidation>
+
+        <MudGrid>
+            <MudItem xs="12">
+                <MudText Align="Align.Left" Color="MudBlazor.Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.ArabicText)</MudText>
+                <MudTextField @bind-Value="_aboutUsSection.ArabicText" For="() => _aboutUsSection.ArabicText" Variant="Variant.Outlined" Lines="5"></MudTextField>
+            </MudItem>
+
+            <MudItem xs="12">
+                <MudText Align="Align.Left" Color="MudBlazor.Color.Dark" Typo="Typo.body1">@Localize(LocalizeKeys.EnglishText)</MudText>
+                <MudTextField @bind-Value="_aboutUsSection.EnglishText" For="() => _aboutUsSection.EnglishText" Variant="Variant.Outlined" Lines="5"></MudTextField>
+            </MudItem>
+        </MudGrid>
+
+        <MudButton Variant="Variant.Filled" Color="MudBlazor.Color.Primary" Disabled="@busy"
+                   ButtonType="ButtonType.Submit" Class="mt-3 ml-auto">
+            @if (busy)
+            {
+                <MudProgressCircular Indeterminate="true" Color="MudBlazor.Color.Primary" Size="Size.Medium" />
+            }
+            else
+            {
+                @Localize(LocalizeKeys.Edit)
+            }
+        </MudButton>
+    </EditForm>
+
+    <MudDivider Class="my-5" />
+
+    <!-- Images Section -->
+    <MudText Typo="Typo.h4" Class="mt-5">@Localize(LocalizeKeys.Images)</MudText>
+    <AboutUsSectionImagesEditor Images="_aboutUsImages"></AboutUsSectionImagesEditor>
+</MudPaper>
+

@@ -1,0 +1,24 @@
+﻿@page "/admin/products/{Id}/images"
+@using Iwan.Client.Blazor.Components.Products
+@attribute [Authorize(Roles = $"{Roles.Admin}, { Roles.SuperAdmin }")]
+
+<MudButton Variant="Variant.Text" Color="Color.Secondary" IconColor="Color.Secondary"
+           StartIcon="@Icons.Outlined.ArrowLeft" OnClick="GoToProductsPage">
+    @Localize(LocalizeKeys.Back)
+</MudButton>
+
+<MudText Typo="Typo.h4" Align="Align.Center" Class="my-5 mb-5">@Localize(LocalizeKeys.ProductImages)</MudText>
+
+<MudGrid>
+    @foreach (var image in productImages)
+    {
+        <MudItem xs="12" sm="12" md="6" lg="2">
+            <ProductImage Image="image" ImageDeleted="OnImageDeleted" />
+        </MudItem>
+    }
+
+    <MudItem xs="12" sm="12" md="6" lg="2">
+        <TempImageUploader CanUploadAfterUploaded="false" ResetAfterUpload="true" ParentBusy="busy"
+                           TempImageUploaded="OnTempImageUploaded" TValidationFor="object" />
+    </MudItem>
+</MudGrid>

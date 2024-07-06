@@ -1,0 +1,59 @@
+﻿@inherits LayoutComponentBase
+@attribute [Authorize(Roles = $"{Roles.Admin}, {Roles.SuperAdmin}")]
+@using Iwan.Client.Blazor.Components.RealTime
+
+<MudThemeProvider Theme="_theme" />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+@*<AuthorizeView>
+    <RealTimeEventsCenter />
+</AuthorizeView>*@
+
+<MudLayout>
+    <MudAppBar Elevation="25">
+        <MudHidden Breakpoint="Breakpoint.SmAndDown">
+            <MudIcon Icon="@Icons.Custom.Brands.MudBlazor" Size="Size.Large" />
+        </MudHidden>
+        <MudHidden Breakpoint="Breakpoint.MdAndUp">
+            <MudIconButton Icon="@Icons.Material.Outlined.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+        </MudHidden>
+        <MudHidden Breakpoint="Breakpoint.Xs">
+            <MudText Typo="Typo.h6" Class="ml-4">Iwan</MudText>
+        </MudHidden>
+        <MudHidden Breakpoint="Breakpoint.Xs" Invert="true">
+            <MudText Typo="Typo.subtitle2">Iwan</MudText>
+        </MudHidden>
+        <MudSpacer />
+        <MudMenu Icon="@Icons.Material.Outlined.Translate" Color="Color.Inherit"
+                 Direction="Direction.Bottom" OffsetY="true" Dense="true">
+            <MudMenuItem OnClick="async () => await ChangeLanguage(AppLanguages.English.Culture)">@AppLanguages.English.Text</MudMenuItem>
+            <MudMenuItem OnClick="async () => await ChangeLanguage(AppLanguages.Arabic.Culture)">@AppLanguages.Arabic.Text</MudMenuItem>
+        </MudMenu>
+        <MudMenu Direction="Direction.Bottom" OffsetX="true" Dense="true" Class="mt-1 ml-4">
+            <ActivatorContent>
+                <MudAvatar Image="images/user-avatar.jpg" />
+            </ActivatorContent>
+            <ChildContent>
+                <MudListItem Text="@Localize(LocalizeKeys.Account)" Icon="@Icons.Material.Outlined.Person" OnClick="NavigateToAccount" />
+                <MudListItem Text="@Localize(LocalizeKeys.Logout)" Icon="@Icons.Material.Outlined.Login" OnClick="Logout" />
+            </ChildContent>
+        </MudMenu>
+    </MudAppBar>
+    <MudDrawer @bind-Open="_drawerOpen" Elevation="25" ClipMode="DrawerClipMode.Always">
+        <NavMenu />
+    </MudDrawer>
+    <MudMainContent>
+        <MudHidden Breakpoint="Breakpoint.SmAndDown">
+            <MudToolBar DisableGutters="true">
+                <MudIconButton Icon="@Icons.Material.Outlined.Menu" Color="Color.Inherit" OnClick="@((e) => DrawerToggle())" Class="ml-3" />
+            </MudToolBar>
+        </MudHidden>
+        <MudContainer MaxWidth="MaxWidth.False" Class="mt-4">
+            @Body
+        </MudContainer>
+        <MudScrollToTop TopOffset="400">
+            <MudFab Icon="@Icons.Material.Filled.KeyboardArrowUp" Color="Color.Primary" />
+        </MudScrollToTop>
+    </MudMainContent>
+</MudLayout>

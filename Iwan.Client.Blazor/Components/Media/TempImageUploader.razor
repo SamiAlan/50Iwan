@@ -1,0 +1,52 @@
+﻿@typeparam TValidationFor
+
+<InputFile id="@inputFileId" OnChange="UploadTempImageAsync" hidden
+           accept="@SupportedImageExtensions.All()" />
+
+@if (uploadedTempImage != null)
+{
+    <div style="width:200px; height:200px; position: relative; @(AddLightGrayBackground ? "background-color: lightgray;" : "")" @onmouseenter="() => hovering = true"
+     @onmouseleave="() => hovering = false">
+        <img src="@uploadedTempImage.SmallImageUrl" width="200" height="200" />
+        <MudOverlay Visible="hovering" DarkBackground="true" Absolute="true">
+            @if (CanDeleteAfterUploaded)
+            {
+                <MudIconButton Icon="@Icons.Material.Filled.Delete" Color="Color.Error" Disabled="@(uploadingTempImage || ParentBusy || deletingImage)"
+                       Variant="Variant.Text" OnClick="() => DeleteTempImageAsync()">
+                </MudIconButton>
+            }
+            @if (CanUploadAfterUploaded)
+            {
+                <MudIconButton HtmlTag="label" Variant="Variant.Text" Color="Color.Primary"
+                       Icon="@Icons.Material.Filled.CloudUpload" for="@inputFileId" Disabled="@(uploadingTempImage || ParentBusy)">
+                </MudIconButton>
+            }
+        </MudOverlay>
+    </div>
+}
+else
+{
+    <MudText @onmouseenter="() => hovering = true" @onmouseleave="() => hovering = false"
+         Style="background-color: lightgray; width:200px; height:200px; position: relative"
+         Class="d-flex align-center justify-content-center">
+        @if (uploadingTempImage)
+        {
+            <MudOverlay Visible="true" LightBackground="true" Absolute="true">
+                <MudProgressCircular Color="Color.Primary" Size="Size.Medium" Value="uploadProgress"/>
+            </MudOverlay>
+        }
+        else
+        {
+            <MudOverlay Visible="hovering" DarkBackground="true" Absolute="true">
+                <MudIconButton HtmlTag="label" Variant="Variant.Text" Color="Color.Primary"
+                       Icon="@Icons.Material.Filled.CloudUpload" for="@inputFileId" Disabled="@(uploadingTempImage || ParentBusy)">
+                </MudIconButton>
+            </MudOverlay>
+        }
+    </MudText>
+}
+
+@if (ValidationFor != null)
+{
+    <ValidationMessage TValue="TValidationFor" For="ValidationFor" />
+}

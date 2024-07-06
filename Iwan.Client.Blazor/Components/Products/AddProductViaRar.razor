@@ -1,0 +1,71 @@
+﻿<style>
+    .drag-drop-zone {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all .4s;
+        min-height: 400px;
+    }
+
+    .drag-drop-input {
+        position: absolute;
+        width: 100%;
+        height: 90%;
+        opacity: 0;
+        cursor: pointer;
+        z-index: 2;
+    }
+
+    .drag-enter {
+        box-shadow: var(--mud-elevation-10);
+    }
+
+    .list {
+        padding: 2em;
+        min-width: 100%;
+    }
+</style>
+
+<EditForm Model="product" OnValidSubmit="AddProductAsync">
+    <ServerValidation @ref="_serverValidator" />
+
+    <MudPaper @ondragenter="@(()=>_dragEnterStyle="drag-enter")"
+              @ondragleave="@(()=>_dragEnterStyle=null)"
+              @ondragend="@(()=>_dragEnterStyle=null)"
+              Class=@("drag-drop-zone " + _dragEnterStyle + "pa-5")>
+
+        <InputFile OnChange="OnInputFileChanged" class="drag-drop-input" accept=".rar" />
+
+        @if (rarFile == null)
+        {
+            <MudText Typo="Typo.h3" Align="Align.Center">@Localize(LocalizeKeys.DragDropOrClick)</MudText>
+        }
+        else
+        {
+            <MudList Style="padding:2em;width:100%;" Dense="true">
+
+                <MudListItem @key="@rarFile.Name">
+                    <MudChip Color="Color.Dark"
+                         Style="width:60px; overflow:hidden;"
+                         Text="@(rarFile.Name.Split(".").Last())" />
+                    @rarFile.Name
+                </MudListItem>
+            </MudList>
+        }
+    </MudPaper>
+
+    @if (busy)
+    {
+        <MudProgressLinear Color="Color.Primary" Size="Size.Medium" Value="uploadProgress" Class="mb-4" />
+    }
+
+    <MudGrid Justify="Justify.Center" Spacing="4" Class="mt-4">
+        <MudItem>
+            <MudButton ButtonType="ButtonType.Submit" Disabled="@(rarFile == null || busy)" Color="Color.Primary" Variant="Variant.Filled">@Localize(LocalizeKeys.Upload)</MudButton>
+        </MudItem>
+        <MudItem>
+            <MudButton OnClick="() => rarFile = null" Disabled="@(rarFile == null || busy)" Color="Color.Error" Variant="Variant.Filled">@Localize(LocalizeKeys.Clear)</MudButton>
+        </MudItem>
+    </MudGrid>
+
+</EditForm>

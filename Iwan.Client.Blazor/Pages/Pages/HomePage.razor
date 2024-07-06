@@ -1,0 +1,18 @@
+﻿@page "/admin/pages/home"
+@using Iwan.Client.Blazor.Components.Pages
+@attribute [Authorize(Roles = $"{Roles.Admin}, { Roles.SuperAdmin }")]
+
+<!-- Header section -->
+<HeaderSectionEditor HeaderSection="_homePageContent.HeaderSection" />
+
+<!-- Interior Design section -->
+<InteriorDesignSectionEditor InteriorDesignSection="_homePageContent.InteriorDesignSection" />
+
+<!-- Services Section -->
+<ServicesSectionEditor ServicesSection="_homePageContent.ServicesSection" />
+
+<!-- About Us section -->
+<AboutUsSectionEditor AboutUsSection="_homePageContent.AboutUsSection" />
+
+<!-- Contact Us Section  -->
+<ContactUsSectionEditor ContactUsSection="_homePageContent.ContactUsSection" />

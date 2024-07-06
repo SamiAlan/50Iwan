@@ -1,0 +1,221 @@
+﻿@model ProductDetailsPageContentViewModel
+@inject IStringLocalizer<Localization> localizer
+
+@{
+    ViewData["Title"] = Model.Product.Name;
+    ViewData["body_style"] = "background-color:#f6f6f6";
+    ViewBag.IsCultureArabic = Model.IsCultureArabic;
+    ViewBag.IsHomePage = false;
+}
+
+<!-- subcategory head start -->
+
+<div class="container">
+    <div class="sub-head">
+        <div class="links">
+            @if (!Model.SelectedCategoryId.IsNullOrEmptyOrWhiteSpaceSafe())
+            {
+                <span><a href="#">@localizer.Localize(LocalizeKeys.Category)</a></span>
+                <div class="divider"></div>
+                <span><a href="/@(ViewBag.IsCultureArabic ? "ar-SA" : "en-US")/product/index?categoryId=@Model.SelectedCategoryId">@Model.SelectedCategoryName</a></span>
+            }
+
+            @if (!Model.SelectedSubCategoryId.IsNullOrEmptyOrWhiteSpaceSafe())
+            {
+                <div class="divider"></div>
+                <span><a href="/@(ViewBag.IsCultureArabic ? "ar-SA" : "en-US")/product/index?categoryId=@(Model.SelectedCategoryId)&subCategoryId=@Model.SelectedSubCategoryId" class="active">@Model.SelectedSubCategoryName</a></span>
+            }
+
+        </div>
+        <div class="head">
+            <h1>@Model.Product.Name</h1>
+        </div>
+    </div>
+</div>
+
+<!-- product details start -->
+<section class="product-details">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="product__carousel" style="background-color: transparent;">
+                    <div class="gallery-parent">
+                        <!-- SwiperJs and EasyZoom plugins start -->
+                        <div class="swiper-container gallery-top">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide easyzoom easyzoom--overlay" id="@Model.Product.Image.Id">
+                                    <a href="@Model.Product.Image.OriginalImage.Url">
+                                        <img src="@Model.Product.Image.MediumImage.Url" alt="" />
+                                    </a>
+                                </div>
+
+                                @if (Model.Images?.Any() ?? false)
+                                {
+                                    foreach (var image in Model.Images)
+                                    {
+                                        <div class="swiper-slide easyzoom easyzoom--overlay" id="@image.Id">
+                                            <a href="@image.OriginalImage.Url">
+                                                <img src="@image.MediumImage.Url" alt="" />
+                                            </a>
+                                        </div>
+                                    }
+                                }
+
+                            </div>
+                            <!-- Add Arrows -->
+                            <div class="swiper-pagination"></div>
+                        </div>
+                        <div class="swiper-container gallery-thumbs">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img src="@Model.Product.Image.SmallImage.Url" alt="" />
+                                </div>
+
+                                @if (Model.Images?.Any() ?? false)
+                                {
+                                    foreach (var image in Model.Images)
+                                    {
+                                        <div class="swiper-slide">
+                                            <img src="@image.SmallImage.Url" alt="" />
+                                        </div>
+                                    }
+                                }
+
+                            </div>
+
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                        </div>
+                        <!-- SwiperJs and EasyZoom plugins end -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="details-section">
+                    <h4>@localizer.Localize(LocalizeKeys.Description):</h4>
+                    <p>@Model.Product.Description</p>
+                    <div class="item-details">
+                        <p><span>@localizer.Localize(LocalizeKeys.ItemNumber)</span> #@Model.Product.Number</p>
+                        <p><span>@localizer.Localize(LocalizeKeys.Condition):</span> @(string.Join(", ", Model.StatesAsString))</p>
+                        <h4>@localizer.Localize(LocalizeKeys.Dimensions):</h4>
+                        <p>@Model.Product.Dimensions</p>
+                        <p><span>@localizer.Localize(LocalizeKeys.ApproxAge):</span> @Model.Product.Age</p>
+                        <p><span>@Model.Product.Maker</span></p>
+                    </div>
+
+
+                    <!-- color picker start -->
+                    <div class="color-picker">
+                        <div class="text"><h4>@localizer.Localize(LocalizeKeys.ChooseBackgroundColor):</h4></div>
+                        <div>
+                            <div class="color-background">
+                                <!-- Loop to adding colors here -->
+                                @if (Model.Colors?.Any() ?? false)
+                                {
+                                    foreach (var color in Model.Colors)
+                                    {
+                                        <div style="background-color: @color.ColorCode; border: 1px solid black" onClick="getColor(this)"></div>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <!-- color picker end -->
+
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                                    @localizer.Localize(LocalizeKeys.WantToBuy)
+                                </button>
+                            </h2>
+                            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                                <div class="accordion-body">
+                                    <div class="accordion-body">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris </p>
+                                        <div class="container">
+                                            <div class="page-divider"></div>
+                                        </div>
+                                        <div class="info">
+                                            <div class="info-container">
+                                                <img src="/assets/images/icons/email.png" alt="">
+                                                <p><a href="mailto:@(Model.RecepientEmail)">@Model.RecepientEmail</a></p>
+                                            </div>
+                                            <div class="info-container">
+                                                <img src="/assets/images/icons/iphone.png" alt="">
+                                                <p><a dir="ltr" href="tel:@(Model.PhoneNumber)">@Model.PhoneNumber</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- product details end -->
+@if (Model.SimilarProducts?.Any() ?? false)
+{
+
+    <!-- page divider start  -->
+    <div class="container">
+        <div class="page-divider"></div>
+        <!-- similar items  -->
+    <div class="similar">
+            <p>@localizer.Localize(LocalizeKeys.SimilarItems)</p>
+        </div>
+        <!-- similar items  -->
+</div>
+    <!-- page divider end  -->
+    <!-- products start -->
+    <section class="products pb-5">
+        <div class="container">
+            <div class="row">
+
+                @foreach (var similarProduct in Model.SimilarProducts)
+                {
+                    <div class="col-lg-3 col-md-3 col-sm-6">
+                        <a href="/@(ViewBag.IsCultureArabic ? "ar-SA" : "en-US")/product/details?id=@similarProduct.Id">
+                            <div class="product-card" style="@(similarProduct.MainImage.HasBackgroundColor ? "background-color: " + similarProduct.MainImage.ColorCode : "")">
+                                <h3>@similarProduct.Name</h3>
+                                <picture>
+                                    <source srcset="@similarProduct.MainImage.MediumImage.Url" media="(min-width: 770px)">
+                                    <source srcset="@similarProduct.MainImage.MobileImage.Url" media="(max-width: 770px)">
+                                    <img src="@similarProduct.MainImage.MediumImage.Url" class="mx-auto d-block" alt="">
+                                </picture>
+                            </div>
+                        </a>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </section>
+}
+<!-- products end -->
+@section Scripts{
+<script>
+            // adding color picker function
+    function getColor(elem) {
+
+        var color = elem.style.backgroundColor;
+        // images array store all product image id that you will put them on html file
+
+        var images = [ '@Model.Product.Image.Id',
+            @foreach (var image in Model.Images){
+                <text>,'@image.Id'</text>
+            }
+        ];
+        var products = [images.length];
+
+        for (var i = 0; i <= images.length; i++) {
+            products[i] = document.getElementById(images[i]);
+            products[i].style.background = color;
+        }
+    }
+</script>
+}

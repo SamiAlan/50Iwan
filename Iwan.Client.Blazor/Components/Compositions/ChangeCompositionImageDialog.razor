@@ -1,0 +1,36 @@
+﻿@using Iwan.Client.Blazor.Services.Compositions
+@using Iwan.Shared.Dtos.Compositions
+@using Iwan.Shared.Dtos.Media
+@using Iwan.Shared.Validators.Compositions.Admin
+
+<MudDialog>
+    <DialogContent>
+        <MudText Typo="Typo.subtitle1" Class="mb-3">@Localize(LocalizeKeys.ChangeCompositionImage)</MudText>
+        <EditForm Model="compositionImage" OnValidSubmit="ChangeImageAsync">
+            <FluentValidationValidator Validator="_imageValidator" DisableAssemblyScanning="true" />
+            <ServerValidation @ref="_serverValidator" />
+
+            <TempImageUploader ValidationFor="() => compositionImage.Image"
+                               TempImageDeleted="OnTempImageDeleted" TempImageUploaded="OnTempImageUploaded"
+                               UploadingTempImage="OnUploadingTempImage">
+            </TempImageUploader>
+
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" FullWidth="true" Disabled="@busy"
+                       ButtonType="ButtonType.Submit" Class="m-auto mt-3">
+                @if (busy)
+                {
+                    <MudProgressCircular Indeterminate="true" Color="Color.Primary" Size="Size.Medium" />
+                }
+                else
+                {
+                    @Localize(LocalizeKeys.Change)
+                }
+            </MudButton>
+        </EditForm>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="HandleCancelClicked">@Localize(LocalizeKeys.Cancel)</MudButton>
+    </DialogActions>
+</MudDialog>
+
+

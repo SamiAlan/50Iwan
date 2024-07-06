@@ -1,0 +1,25 @@
+﻿@page "/admin/jobs/background"
+@using Iwan.Client.Blazor.Components.Jobs
+@attribute [Authorize(Roles = $"{Roles.Admin}, { Roles.SuperAdmin }")]
+
+<MudText Typo="Typo.h3" Align="Align.Center" Class="my-7">@Localize(LocalizeKeys.BackgroundJobs)</MudText>
+<!-- Watermarking section -->
+<RealTimeWatermarkingJob />
+
+<!-- Unwatermarking section -->
+<RealTimeUnWatermarkingJob />
+
+<!-- Resizing products images section -->
+<RealTimeResizingProductImagesJob />
+
+<!-- Resizing categories images section -->
+<RealTimeResizingCategoriesImagesJob />
+
+<!-- Resizing compositions images section -->
+<RealTimeResizingCompositionsImagesJob />
+
+<!-- Resizing slider images section -->
+<RealTimeResizingSliderImagesJob />
+
+<!-- Resizing about us images section -->
+<RealTimeResizingAboutUsImagesJob />
